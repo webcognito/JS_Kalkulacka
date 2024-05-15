@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kalkulačka</title>
+    <!-- Use bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Use own CSS -->
+    <link rel="stylesheet" href="../static/css/layout.css">
+    <!-- Use fontawsome-->
+    <script src="https://kit.fontawesome.com/06720cb6ae.js" crossorigin="anonymous"></script>
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    /* Firefox 
+    input[type=number] {
+      -moz-appearance: textfield;
+    } 
+    */
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container mt-2">
+            <div class="row">
+                <div class="col-md-5">
+                    <img class="img-fluid rounded mx-auto d-block mb-3" src="../static/logo/UtilityCrop.jpg" alt="Kalkulačka" width="300px" height="300px">
+                </div>
+                <div class="col-md-7 d-flex align-items-center justify-content-center">
+                    <nav class="nav">
+                        <a class="nav-link" aria-current="page" href="index.html">Start</a>
+                        <a class="nav-link" aria-current="page" href="pricelist.html">Ceníky</a>
+                        <a class="nav-link" href="einput.html">Elektřina</a>
+                        <a class="nav-link" href="ginput.html">Plyn</a>
+                      </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+<!-- CONTENT -->
+
+        <div class="container mt-5 mb-5">
+            <form id="printGForm" class="row g-3 form-bg-color gform" action="/" method="">
+            <h3 class="text-center text-primary"><u>Plyn - Vaše Údaje</u></h3>
+            <div class="d-flex text-center justify-content-around">
+                <h5>Dodavatel<br><small class="text-primary">{{.Company}}</small></h5>
+                <h5>Smlouva<br><small class="text-primary">{{.ContractDuration}}</small></h5>
+                <h5>Roční odběr<br><small class="text-primary">{{.UsageRange}}</small></h5>
+            </div>
+            <div class="form-label text-center col-6 mt-4">
+                <label for="usageM3">Spotřeba (m<sup>3</sup>)</label>
+                <input type="number" step=0.01 class="form-control text-center" id="usageM3" name="usageM3" value="{{.UsageM3}}" disabled>
+            </div>
+            <div class="form-label text-center col-6 mt-4">
+                <label for="usageMWh">Spotřeba (MWh)</label>
+                <input type="number" step=0.01 class="form-control text-center" id="usageMWh" name="usageMWh" value="{{.UsageMWh}}" disabled>
+            </div>
+            <div class="container">
+                <hr class="opacity-75 border-primary border-top border-3">
+            </div>
+            <h4 class="text-primary text-center"><u></u></h4>
+            <div class="form-label text-center col-4">
+                <label for="CostUsage">Cena za Plyn<br>(Kč)</label>
+                <input type="number" class="form-control text-center" id="CostUsage" name="CostUsage" value="{{.CostUsage}}" disabled> 
+            </div>
+            <div class="form-label text-center col-4">
+                <label for="CostDist">Stálá Platba<br>za {{.NumberOfMonths}} měsícu (Kč)</label>
+                <input type="number" class="form-control text-center" id="CostDist" name="CostDist" value="{{.CostDistxMonths}}" disabled> 
+            </div>
+            <div class="form-label text-center col-4">
+                <label for="CostDist">Stálá Platba<br>za měsíc (Kč)</label>
+                <input type="number" class="form-control text-center" id="CostDist" name="CostDist" value="{{.CostDist}}" disabled> 
+            </div>
+            <div class="container">
+                <hr class="opacity-75 border-primary border-top border-3">
+            </div>
+            <h4 class="text-primary text-center"><u>Celková Cena</u></h4>
+            <div class="form-label text-center col-6">
+                <label for="total">Za {{.NumberOfMonths}} měsícu (Kč)</label>
+                <input type="number" class="form-control text-center" id="total" name="total" value="{{.Total}}" disabled> 
+            </div>
+            <div class="form-label text-center col-6 mb-3">
+                <label for="totalMonth">Měsíčna Záloha (Kč)</label>
+                <input type="number" class="form-control text-center" id="advance" name="totalMonth" value="{{.Advance}}" disabled> 
+            </div>
+            <h6 class="text-center">webcognito.com - Kalkulačka</h6>
+            </form>
+        
+        <div class="row mt-5 mb-5">
+            <div class="col-1"></div>
+            <button type="button" onclick="downloadDetailCalculation()" class="btn btn-primary btn-block col-4"><i class="fa-solid fa-download"></i><br>Stáhnout Výpočet</button>
+            <div class="col-2"></div>
+            <button type="button" onclick="addGasComp()" class="btn btn-primary btn-block col-4">Přidat do Srovnání<br><i class="fa-solid fa-arrow-down"></i></button>
+            <div class="col-1"></div>
+        </div>
+        <!-- Table for comparison -->
+        <div id="tablePrint" style="overflow-x: auto;" class="row">
+            <h4 class="text-danger text-center">Srovnání Výpočtu</h4>
+        <table id="savedComp" class="text-center form-bg-color">
+            <tr>
+            <th>Dodavatel</th>
+            <th>Smlouva</th>
+            <th>Spotřeba</th>
+            <th>Měsícu</th>
+            <th>Cena</th>
+            <th>Záloha</th>
+            </tr>
+            <!-- created by js -->
+        </table>
+        <div class="row mt-2 mb-2">
+            <div class="col-5"></div>
+            <button type="button" onclick="clearGTable(gRows)" class="btn btn-dark btn-block col-2 text-danger text-center"><i class="fa-regular fa-trash-can" style="color: #db3545;"></i> Clear Table</button>
+            <div class="col-5"></div>
+        </div>
+        </div>
+        <!-- End of comp table -->
+        <div class="row mt-5 mb-5">
+            <div class="col-1"></div>
+            <button type="button" onclick="downloadComparision()" class="btn btn-primary btn-block col-4"><i class="fa-solid fa-download"></i><br>Stáhnout Srovnání</button>
+            <div class="col-2"></div>
+            <button type="button" onclick="downloadDetailWithComp()" class="btn btn-primary btn-block col-4"><i class="fa-solid fa-download"></i><br>Stáhnout Vše</button>
+            <div class="col-1"></div>
+        </div>
+        </div>
+        <!-- Hidden table for saving data to local storage -->
+        <table id="comp" class="form-bg-color text-center" hidden>
+            <tr>
+            <td>{{.Company}}</td>
+            <td>{{.ContractDuration}}</td>
+            <td>{{.UsageMWh}}</td>
+            <td>{{.NumberOfMonths}}</td>
+            <td>{{.Total}}</td>
+            <td>{{.Advance}}</td>
+            <td>{{.UsageRange}}</td>
+            <td>{{.UsageM3}}</td>
+            <td>{{.CostUsage}}</td>
+            <td>{{.CostDistxMonths}}</td>
+            <td>{{.CostDist}}</td>
+            <td>{{.Uuid}}</td>
+            </tr>
+        </table>
+        </div>
+  
+    <!-- Use JS -->
+        <script type="text/javascript" src="static/js/gas_download.js"></script>
+        <!-- JS for comparison table -->
+        <script type="text/javascript" src="static/js/renderGasTable.js"></script>
+    
+        <!-- CDN for pdfmake -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js" integrity="sha512-a9NgEEK7tsCvABL7KqtUTQjl69z7091EVPpw5KxPlZ93T141ffe1woLtbXTX+r2/8TtTvRX/v4zTL2UlMUPgwg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.min.js" integrity="sha512-P0bOMePRS378NwmPDVPU455C/TuxDS+8QwJozdc7PGgN8kLqR4ems0U/3DeJkmiE31749vYWHvBOtR+37qDCZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+<!-- FOOTER -->
+
+    <footer>
+        <div class="row">
+            <div class="col-8 footer-background d-flex align-items-center justify-content-center">
+                <h6><i class="far fa-copyright footer-background"></i> 2023 - Designed by</h6>
+            </div>
+            <div class="col-4 footer-background2">
+                <img src="../static/logo/simple2Crop.png" class="mx-auto d-block footer-background2" alt="WebCognito_Lion" width="120" height="60">
+            </div>
+        </div>
+       
+    </footer>
+</body>
+</html>

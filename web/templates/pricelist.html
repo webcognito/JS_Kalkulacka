@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kalkulačka</title>
+    <!-- Use bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Use own CSS -->
+    <link rel="stylesheet" href="../static/css/layout.css">
+    <!-- Use fontawsome-->
+    <script src="https://kit.fontawesome.com/06720cb6ae.js" crossorigin="anonymous"></script>
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    /* Firefox 
+    input[type=number] {
+      -moz-appearance: textfield;
+    } 
+    */
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container mt-2">
+            <div class="row">
+                <div class="col-md-5">
+                    <img class="img-fluid rounded mx-auto d-block mb-3" src="../static/logo/UtilityCrop.jpg" alt="Kalkulačka" width="300px" height="300px">
+                </div>
+                <div class="col-md-7 d-flex align-items-center justify-content-center">
+                    <nav class="nav">
+                        <a class="nav-link" aria-current="page" href="index.html">Start</a>
+                        <a class="nav-link" aria-current="page" href="pricelist.html">Ceníky</a>
+                        <a class="nav-link" href="e_input.html">Elektřina</a>
+                        <a class="nav-link" href="g_input.html">Plyn</a>
+                      </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+<!-- CONTENT -->
+
+        <div class="container mt-5 mb-5">
+            <h1 class="text-center text-primary pt-3">Ceníky</h1>
+            <div class="container mt-3">
+            <hr class="opacity-100 border-primary border-top border-3">
+            </div>
+            <div class="row mt-5">
+            <div class="col-4">
+                <div class="thumbnail">
+                <a href="https://www.cez.cz/cs/podpora/ceniky.html" target="_blank">
+                    <img src="../static/images/CEZ.png" class="mx-auto d-block" alt="ČEZ" style="width: 100px; height: 100px;">
+                    <div class="caption text-center">
+                    <p>SKUPINA ČEZ</p>
+                    </div>
+                </a>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="thumbnail">
+                <a href="https://www.pre.cz/cs/domacnosti/elektrina/" target="_blank">
+                    <img src="../static/images/PRE.png" class="mx-auto d-block" alt="PRE" style="width: 100px; height: 100px;">
+                    <div class="caption text-center">
+                    <p>PRE</p>
+                    </div>
+                </a>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="thumbnail">
+                <a href="https://www.eon.cz/domacnosti/zakaznicka-pece/ceniky/?category=ke-sjednani&commodity=elektrina&zipCode=12800&page=1&searchType=facetsearch" target="_blank">
+                    <img src="../static/images/EON.png" class="mx-auto d-block" alt="E.ON" style="width: 100px;height: 100px;">
+                    <div class="caption text-center">
+                    <p>E.ON</p>
+                    </div>
+                </a>
+                </div>
+            </div> 
+            </div>
+            <div class="row mt-5">
+            <div class="col-4">
+                <div class="thumbnail">
+                <a href="https://www.innogy.cz/ceniky/" target="_blank">
+                    <img src="../static/images/innogy.png" class="mx-auto d-block" alt="Innogy" style="width: 100px; height: 100px">
+                    <div class="caption text-center">
+                    <p>Innogy</p>
+                    </div>
+                </a>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="thumbnail">
+                <a href="https://www.centropol.cz/ceniky/" target="_blank">
+                    <img src="../static/images/centropol.png" class="mx-auto d-block" alt="Centropol" style="width: 100px;height: 100px;">
+                    <div class="caption text-center">
+                    <p>Centropol</p>
+                    </div>
+                </a>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="thumbnail">
+                <a href="https://www.mnd.cz/" target="_blank">
+                    <img src="../static/images/MND.png" class="mx-auto d-block" alt="MND" style="width: 100px;height: 100px;">
+                    <div class="caption text-center">
+                    <p>MND</p>
+                    </div>
+                </a>
+                </div>
+            </div>
+            </div>
+            <div class="container mt-3 mb-5">
+            <hr class="opacity-100 border-primary border-top border-3">
+            </div>
+        </div>
+
+<!-- FOOTER -->
+
+    <footer>
+        <div class="row">
+            <div class="col-8 footer-background d-flex align-items-center justify-content-center">
+                <h6><i class="far fa-copyright footer-background"></i> 2023 - Designed by</h6>
+            </div>
+            <div class="col-4 footer-background2">
+                <img src="../static/logo/simple2Crop.png" class="mx-auto d-block footer-background2" alt="WebCognito_Lion" width="120" height="60">
+            </div>
+        </div>
+       
+    </footer>
+</body>
+</html>

@@ -143,30 +143,28 @@ function Result(result) {
     const html ='<div id="result" style="display:block;" class="container mt-5 mb-3">'+
                     '<div class="row footer-background">'+
                         '<h4 class="text-primary text-center text-center mt-3"><u>Celková Cena</u></h4>'+
-                        '<div class="col-sm-1"></div>'+
-                        '<div class="form-label text-center col-sm-5">'+
+                        
+                        '<div class="form-label text-center col">'+
                             '<label for="total">Za ' + result.numberOfMonths + ' měsícu (Kč)</label>'+
                             '<input type="number" class="form-control text-center" id="total" name="total" value="' + result.totalCost + '" disabled>'+
                         '</div>'+
-                        '<div class="form-label text-center col-sm-5 mb-5">'+
+                        '<div class="form-label text-center mb-5 col">'+
                             '<label for="totalMonth">Měsíčna Záloha (Kč)</label>'+
                             '<input type="number" class="form-control text-center" id="advance" name="totalMonth" value="' + result.advancePay + '" disabled>'+
                         '</div>'+
-                        '<div class="col-sm-1"></div>'+
+                        
                     '</div>'+
                     '<div id="buttonsQuickResult" class="row">'+
-                        '<div class="mt-5 mb-3 d-grid col-sm-3">'+
+                        '<div class="mt-3 d-grid col-6 col-md">'+
                             '<button id="btnNewCalc1" type="button" onclick="newCalc()" class="btn btn-primary btn-block" style="display: block;">Změnit Parametry</button>'+
                         '</div>'+
-                        '<div class="col-sm-1"></div>'+
-                        '<div class="mt-5 mb-3 d-grid col-sm-2">'+
-                            '<button id="btnDetail" type="button" onclick="showDetail()" class="btn btn-primary btn-block">Podrobnosti</button>'+
-                        '</div>'+
-                        '<div class="mt-5 mb-3 d-grid col-sm-2">'+
+                        '<div class="mt-3 d-grid col-6 col-md">'+
                             '<button id="btnComp" type="button" onclick="showTable()" class="btn btn-primary btn-block">Srovnat</button>'+
                         '</div>'+
-                        '<div class="col-sm-1"></div>'+
-                        '<div class="mt-5 mb-3 d-grid col-sm-3">'+
+                        '<div class="mt-3 d-grid col-6 col-md">'+
+                            '<button id="btnDetail" type="button" onclick="showDetail()" class="btn btn-primary btn-block">Podrobnosti</button>'+
+                        '</div>'+
+                        '<div class="mt-3 d-grid col-6 col-md">'+
                             '<button id="btnDownloadResult" type="button" onclick="" class="btn btn-primary btn-block">Stáhnout Výpočet</button>'+
                         '</div>'+
                     '</div>'+
@@ -174,37 +172,36 @@ function Result(result) {
                 '<div id="detail" class="container mb-5 mt-3" style="display: none">'+
                     '<div class="row footer-background">'+
                         '<h4 class="text-primary text-center mt-3"><u>Podrobnosti</u></h4>'+
-                        '<div class="col-sm-1"></div>'+
-                        '<div class="form-label text-center mt-3 mb-4 col-sm-5">'+
+                        
+                        '<div class="form-label text-center mt-3 col-sm-6 col-lg">'+
                             '<label for="CostUsage">Obchodní Cena (Kč)</label>'+
                             '<input type="number" class="form-control text-center" id="CostUsage" name="CostUsage" value="'+result.companyCost+'" disabled>'+ 
                         '</div>'+
-                        '<div class="form-label text-center mt-3 mb-4 col-sm-5">'+
+                        '<div class="form-label text-center mt-3 col-sm-6 col-lg">'+
                             '<label for="CostDist">Regulovaná Cena (Kč)</label>'+
                             '<input type="number" class="form-control text-center" id="CostDist" name="CostDist" value="'+result.regulatoryCost+'" disabled>'+ 
                         '</div>'+
-                        '<div class="col-sm-1"></div>'+
-                        '<div class="col-sm-1"></div>'+
-                        '<div class="form-label text-center mt-3 mb-4 col-sm-5">'+
+                        
+                        '<div class="form-label text-center mt-3 col-sm-6 col-lg">'+
                             '<label for="CostUsage">Uživatelská Cena (Kč)</label>'+
                             '<input type="number" class="form-control text-center" id="CostUsage" name="CostUsage" value="'+result.usageCost+'" disabled>'+ 
                         '</div>'+
-                        '<div class="form-label text-center mt-3 mb-4 col-sm-5">'+
+                        '<div class="form-label text-center mt-3 mb-3 col-sm-6 col-lg">'+
                             '<label for="CostDist">Distribucní Cena (Kč)</label>'+
                             '<input type="number" class="form-control text-center" id="CostDist" name="CostDist" value="'+result.distCostXmonths+'" disabled>'+ 
                         '</div>'+
-                        '<div class="col-sm-1"></div>'+
+                        
                     '</div>'+
                     '<div id="buttonsDetail" class="row">'+
-                        '<div class="mt-5 mb-1 d-grid col-sm-3">'+
+                        '<div class="mt-5 mb-1 d-grid col">'+
                             '<button id="btnNewCalc2" type="button" onclick="newCalc()" class="btn btn-primary btn-block" style="display: block;">Změnit Parametry</button>'+
                         '</div>'+
-                        '<div class="col-sm-1"></div>'+
-                        '<div class="mt-5 mb-1 d-grid col-sm-4">'+
+                        
+                        '<div class="mt-5 mb-1 d-grid col">'+
                             '<button id="btnCompDetail" type="button" onclick="showTable()" class="btn btn-primary btn-block" style="display: block;">Srovnat</button>'+
                         '</div>'+
-                        '<div class="col-sm-1"></div>'+
-                        '<div class="mt-5 mb-1 d-grid col-sm-3">'+
+                        
+                        '<div class="mt-5 mb-1 d-grid col">'+
                             '<button id="btnDownloadDetail" type="button" onclick="" class="btn btn-primary btn-block">Stáhnout Podrobnosti</button>'+
                         '</div>'+
                     '</div>'+
@@ -222,15 +219,15 @@ function Result(result) {
                             '</tr>'+
                         '</table>'+
                     '<div class="row">'+
-                        '<div class="mt-5 mb-5 d-grid col-sm-3">'+
+                        '<div class="mt-5 mb-5 d-grid col">'+
                             '<button id="btnNewCalc" type="button" onclick="newCalc()" class="btn btn-primary btn-block">Změnit Parametry</button>'+
                         '</div>'+
-                        '<div class="col-sm-1"></div>'+
-                        '<div class="mt-5 mb-5 d-grid col-sm-4">'+
+                        
+                        '<div class="mt-5 mb-5 d-grid col">'+
                             '<button id="btnClearTable" type="button" onclick="clearGTable()" class="btn btn-primary btn-block">Vše Smazat a Začít Znova</button>'+
                         '</div>'+
-                        '<div class="col-sm-1"></div>'+
-                        '<div class="mt-5 mb-5 d-grid col-sm-3">'+
+                        
+                        '<div class="mt-5 mb-5 d-grid col">'+
                             '<button id="btnDownload" type="button" onclick="" class="btn btn-primary btn-block">Stáhnout Srovnání</button>'+
                         '</div>'+
                     '</div>'+

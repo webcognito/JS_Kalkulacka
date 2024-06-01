@@ -51,9 +51,9 @@
         <div class="container mt-5 mb-5">
             <form class="row g-3 form-bg-color" id= "gForm">
                 <h2 class="text-center text-primary"><u>Plyn</u></h2>
-                <div class="form-label col-sm-4 mb-3">
+                <div class="form-label text-center col-12 col-md-4 mb-3">
                     <label for="company"><h4>Dodavatel</h4></label>
-                    <input type="text" class="form-control" id="company" name="company" placeholder="Vyberte" list="elecCompany">
+                    <input type="text" class="form-control text-center" id="company" name="company" placeholder="Vyberte" list="elecCompany">
                         <datalist id="elecCompany">
                             <option value="ČEZ"></option>
                             <option value="E.ON"></option>
@@ -63,9 +63,9 @@
                             <option value="MND"></option>
                         </datalist>
                 </div>
-                <div class="form-label col-sm-4 mb-3">
+                <div class="form-label text-center col-6 col-md-4 mb-3">
                     <label for="contractDuration"><h4>Smlouva</h4></label>
-                    <select class="form-select" name="contractDuration">
+                    <select class="form-select text-center" name="contractDuration">
                         <option value="">Vyberte</option>
                         <option value="Doba neurčita">Doba neurčita</option>
                         <option value="1 Rok">Doba určita 1 Rok</option>
@@ -73,9 +73,9 @@
                         <option value="3 Roky">Doba určita 3 Roky</option>
                     </select>
                 </div>
-                <div class="form-label col-sm-4 mb-3">
+                <div class="form-label text-center col-6 col-md-4 mb-3">
                     <label for="usageRange"><h4>Roční odběr</h4></label>
-                    <select class="form-select" name="usageRange">
+                    <select class="form-select text-center" name="usageRange">
                         <option value="">MWh</option>
                         <option value="do 1,89">do 1,89</option>
                         <option value="nad 1,89 do 7,56">nad 1,89 do 7,56</option>
@@ -91,16 +91,16 @@
             <!-- Usage -->
                 <h4>Spotřeba (m<sup>3</sup>)</h4>
                 <sup>(1m<sup>3</sup> = 0,01086 MWh)</sup>
-                <div class="form-floating col-sm-4">
+                <div class="form-floating col">
                     <input onkeyup="m3toMWh()" type="number" step=0.01 class="form-control" id="m3Usage" name="m3Usage" placeholder="m3">
                     <label for="m3Usage">m<sup>3</sup></label>
                 </div>
-                <div class="form-floating col-sm-4">
+                <div class="form-floating col">
                     <input onkeyup="mWhtoM3()" type="number" step=0.001 class="form-control" id="mwhUsage" name="mwhUsage" placeholder="MWh">
                     <label for="mwhUsage">MWh</label> 
                 </div>
             <!-- Number of Months -->
-                <div class="form-floating col-sm-4">
+                <div class="form-floating col">
                     <select class="form-select form-control" id="numberOfMonths" name="numberOfMonths">
                         <option value="12">12</option>
                         <option value="11">11</option>
@@ -122,12 +122,12 @@
                 </div>
             <!-- Price for Gas -->
                 <h4>CENA ZA PLYN</h4>
-                <div class="form-floating col-sm-6">
+                <div class="form-floating col-sm">
                     <input type="number" step=0.01 class="form-control" id="priceGas" name="priceGas" placeholder="[Kč/MWh]">
                     <label for="priceGas">Odebraný plyn s DPH <small>(Kč/MWh)</small></label>
                 </div>
             <!-- Monthly Payments Gas -->
-                <div class="form-floating col-sm-6">
+                <div class="form-floating col-sm">
                     <input type="number" step=0.01 class="form-control" id="monthlyGas" name="monthlyGas" placeholder="[Kč/měsíc]">
                     <label for="monthlyGas">Stálá platba s DPH <small>(Kč/měsíc)</small></label>
                 </div>
@@ -136,12 +136,12 @@
                 </div>
             <!-- Price for Gas Dist -->  
                 <h4>CENA ZA DISTRIBUCI</h4>
-                <div class="form-floating col-sm-6">
+                <div class="form-floating col-sm">
                     <input type="number" step=0.01 class="form-control" id="priceDist" name="priceDist" placeholder="[Kč/MWh]">
                     <label for="priceDist">Plynu s DPH <small>(Kč/MWh)</small></label>
                 </div>
             <!-- Monthly Payments Dist -->
-                <div class="form-floating col-sm-6">
+                <div class="form-floating col-sm">
                     <input type="number" step=0.01 class="form-control" id="monthlyDist" name="monthlyDist" placeholder="[Kč/měsíc]">
                     <label for="monthlyDist">Stálá platba s DPH <small>(Kč/měsíc)</small></label>
                 </div>
@@ -149,20 +149,17 @@
                     <hr class="opacity-75 border-primary border-top border-3">
                 </div>
         <!-- Submit and Result Section -->    
-                <div id="submit" class="row" style="display: flex;">
-                    <div class="col-sm-2"></div>
-                    <div class="form-check col-sm-8">
+                <div id="submit" class="row m-3" style="display: flex;">
+                    
+                    <div class="form-check col">
                         <input class="form-check-input" type="checkbox" id="consent" required>
                         <label class="form-check-label" for="consent">
                             Rozumím, že vypočtené výsledky jsou pouze orientační a každý poskytovatel provádí vlastní výpočty.
                         </label>
                     </div>
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-2"></div>
-                    <div class="mt-2 mb-5 d-grid col-sm-8">
+                    <div class="m-3  d-grid col">
                         <button id="btnSubmit" type="button" onclick="getFormData()" class="btn btn-primary btn-block" disabled>Vypočítat</button>
                     </div>
-                    <div class="col-sm-2"></div>
                 </div>
                 <div id="result"></div>
             </form>

@@ -149,37 +149,25 @@
                     <hr class="opacity-75 border-primary border-top border-3">
                 </div>
         <!-- Submit and Result Section -->    
-            <div id="submit" class="row">
-                <div class="col-sm-2"></div>
-                <div class="form-check col-sm-8">
-                    <input class="form-check-input" type="checkbox" id="consent" required>
-                    <label class="form-check-label" for="consent">
-                        Rozumím, že vypočtené výsledky jsou pouze orientační a každý poskytovatel provádí vlastní výpočty.
-                    </label>
+                <div id="submit" class="row" style="display: flex;">
+                    <div class="col-sm-2"></div>
+                    <div class="form-check col-sm-8">
+                        <input class="form-check-input" type="checkbox" id="consent" required>
+                        <label class="form-check-label" for="consent">
+                            Rozumím, že vypočtené výsledky jsou pouze orientační a každý poskytovatel provádí vlastní výpočty.
+                        </label>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-2"></div>
+                    <div class="mt-2 mb-5 d-grid col-sm-8">
+                        <button id="btnSubmit" type="button" onclick="getFormData()" class="btn btn-primary btn-block" disabled>Vypočítat</button>
+                    </div>
+                    <div class="col-sm-2"></div>
                 </div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="mt-2 mb-5 d-grid col-sm-8">
-                    <button id="btnSubmit" type="button" onclick="getFormData()" class="btn btn-primary btn-block">Vypočítat</button>
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-            <div id="gTable"></div>
+                <div id="result"></div>
             </form>
         </div>
-<!-- Conversion m3 to MWh and vice versa -->
-    <script>
-        function m3toMWh (){
-            var m3 = document.getElementById('m3Usage').value;
-            var mWh = Math.round(((m3 * 0.9968 * 0.0108987) + Number.EPSILON) * 1000) / 1000;
-            document.getElementById('mwhUsage').value = mWh;
-        }
-        function mWhtoM3 (){
-            var mWh = document.getElementById('mwhUsage').value;
-            var m3 = Math.round(((mWh / 0.9968 / 0.0108987) + Number.EPSILON) * 10) / 10;
-            document.getElementById('m3Usage').value = m3;
-        }
-    </script>
+
 
 <!-- FOOTER -->
 
@@ -195,6 +183,32 @@
        
     </footer>
 
-<script src="../static/js/form.js"></script>
+<!--<script type="module" src="../js/gasFormLogic.js"></script>-->
+<script src="../js/gasPage/FormLogic.js"></script>
+<script src="../js/gasPage/shortFunctions.js"></script>
+<script src="../js/gasPage/buttonFunctions.js"></script>
+
+<!-- Conversion m3 to MWh and vice versa -->
+<script>
+    function m3toMWh (){
+        var m3 = document.getElementById('m3Usage').value;
+        var mWh = Math.round(((m3 * 0.9968 * 0.0108987) + Number.EPSILON) * 1000) / 1000;
+        document.getElementById('mwhUsage').value = mWh;
+    };
+    function mWhtoM3 (){
+        var mWh = document.getElementById('mwhUsage').value;
+        var m3 = Math.round(((mWh / 0.9968 / 0.0108987) + Number.EPSILON) * 10) / 10;
+        document.getElementById('m3Usage').value = m3;
+    };
+// Get the checkbox and the button elements
+    const checkbox = document.getElementById('consent');
+    const button = document.getElementById('btnSubmit');
+// Add an event listener to the checkbox to monitor its state
+    checkbox.addEventListener('change', function() {
+      // Enable the button if the checkbox is checked, otherwise disable it
+      button.disabled = !checkbox.checked;
+    });
+
+</script>
 </body>
 </html>

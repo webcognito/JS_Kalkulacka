@@ -9,7 +9,7 @@ function getFormData() {
     const contractDuration = formValue("form", 'contractDuration');
     const usageRange = formValue("form", 'usageRange');
     const m3Usage = parseFloat(formValue("form", 'm3Usage'));
-    const mwhUsage = parseFloat(formValue("form", 'mwhUsage'));
+    const mwhUsage = parseFloat(formValue("form", 'usage'));
     const numberOfMonths = parseFloat(formValue('form', 'numberOfMonths'));
     const priceGas = parseFloat(formValue('form', 'priceGas'));
     const monthlyGas = parseFloat(formValue('form', 'monthlyGas'));
@@ -158,7 +158,7 @@ function Result(result) {
                     '</div>'+
                     '<div id="buttonsQuickResult" class="row mt-4 mb-3">'+
                         '<div class="d-grid col-6 mt-3 col-md">'+
-                            '<button id="btnNewCalc1" type="button" onclick="newCalc()" class="btn btn-primary btn-block" style="display: block;">Změnit Parametry</button>'+
+                            '<button id="btnNewCalc1" type="button" onclick="newCalc()" class="btn btn-primary btn-block" style="display: block;"><i class="fa-solid fa-arrows-rotate"></i> Změnit Parametry</button>'+
                         '</div>'+
                         '<div class="d-grid col-6 mt-3 col-md">'+
                             '<button id="btnComp" type="button" onclick="showTable()" class="btn btn-primary btn-block">Srovnat</button>'+
@@ -167,7 +167,7 @@ function Result(result) {
                             '<button id="btnDetail" type="button" onclick="showDetail()" class="btn btn-primary btn-block">Podrobnosti</button>'+
                         '</div>'+
                         '<div class="d-grid col-6 mt-3 col-md">'+
-                            '<button id="btnDownloadDetail" type="button" onclick="downloadDetailCalculation()" class="btn btn-primary btn-block">Stáhnout Výpočet</button>'+
+                            '<button id="btnDownloadDetail" type="button" onclick="downloadDetailCalculation()" class="btn btn-primary btn-block"><i class="fa-solid fa-download"></i> Stáhnout Výpočet</button>'+
                         '</div>'+
                     '</div>'+
                 '</div>'+
@@ -194,7 +194,7 @@ function Result(result) {
                     '</div>'+
                     '<div id="buttonsDetail" class="row mt-4 mb-3">'+
                         '<div class="d-grid col">'+
-                            '<button id="btnNewCalc2" type="button" onclick="newCalc()" class="btn btn-primary btn-block" style="display: block;">Změnit Parametry</button>'+
+                            '<button id="btnNewCalc2" type="button" onclick="newCalc()" class="btn btn-primary btn-block" style="display: block;"><i class="fa-solid fa-arrows-rotate"></i> Změnit Parametry</button>'+
                         '</div>'+
                         
                         '<div class="d-grid col">'+
@@ -202,7 +202,7 @@ function Result(result) {
                         '</div>'+
                         
                         '<div class="d-grid col">'+
-                            '<button id="btnDownloadDetail" type="button" onclick="downloadDetailCalculation()" class="btn btn-primary btn-block">Stáhnout Podrobnosti</button>'+
+                            '<button id="btnDownloadDetail" type="button" onclick="downloadDetailCalculation()" class="btn btn-primary btn-block"><i class="fa-solid fa-download"></i> Stáhnout Podrobnosti</button>'+
                         '</div>'+
                     '</div>'+
                 '</div>'+
@@ -220,15 +220,15 @@ function Result(result) {
                         '</table>'+
                     '<div id="buttonsTable" class="row mt-4 mb-3">'+
                         '<div class="d-grid col">'+
-                            '<button id="btnNewCalc" type="button" onclick="newCalc()" class="btn btn-primary btn-block">Změnit Parametry</button>'+
+                            '<button id="btnNewCalc" type="button" onclick="newCalc()" class="btn btn-primary btn-block"><i class="fa-solid fa-arrows-rotate"></i> Změnit Parametry</button>'+
                         '</div>'+
                         
                         '<div class="d-grid col">'+
-                            '<button id="btnClearTable" type="button" onclick="clearGTable()" class="btn btn-primary btn-block">Vše Smazat a Začít Znova</button>'+
+                            '<button id="btnClearTable" type="button" onclick="clearGTable()" class="btn btn-primary btn-block"><i class="fa-regular fa-trash-can"></i> Smazat a Začít Znova</button>'+
                         '</div>'+
                         
                         '<div class="d-grid col">'+
-                            '<button id="btnDownload" type="button" onclick="downloadComparision()" class="btn btn-primary btn-block">Stáhnout Srovnání</button>'+
+                            '<button id="btnDownload" type="button" onclick="downloadComparision()" class="btn btn-primary btn-block"><i class="fa-solid fa-download"></i> Stáhnout Srovnání</button>'+
                         '</div>'+
                     '</div>'+
                 '</div>';
@@ -287,26 +287,18 @@ return html;
 function m3toMWh (){
     var m3 = getId('m3Usage').value;
     var mWh = Math.round(((m3 * 0.9968 * 0.0108987) + Number.EPSILON) * 1000) / 1000;
-    getId('mwhUsage').value = mWh;
+    getId('usage').value = mWh;
 };
 function mWhtoM3 (){
-    var mWh = getId('mwhUsage').value;
+    var mWh = getId('usage').value;
     var m3 = Math.round(((mWh / 0.9968 / 0.0108987) + Number.EPSILON) * 10) / 10;
     getId('m3Usage').value = m3;
 };
 
-// Get the checkbox and the button elements
-const checkbox = document.getElementById('consent');
-const button = document.getElementById('btnSubmit');
-// Add an event listener to the checkbox to monitor its state
-checkbox.addEventListener('change', function() {
-  // Enable the button if the checkbox is checked, otherwise disable it
-  button.disabled = !checkbox.checked;
-});
 
 // Iinput field onclick delete default value
 document.addEventListener('DOMContentLoaded', (event) => {
-    const inputField1 = getId('mwhUsage');
+    const inputField1 = getId('usage');
     const inputField2 = getId('m3Usage');
 
     inputField1.addEventListener('focus', () => {

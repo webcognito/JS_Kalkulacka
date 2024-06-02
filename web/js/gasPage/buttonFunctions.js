@@ -1,41 +1,41 @@
 // Gas Page Button Functions
 
-// Button new Calculation
+// Button new Calculation / id="btnNewCalc1" & id="btnNewCalc2" 
 function newCalc(){
     // Scroll to element
-    scrollTo('gForm');
+    scrollTo('form');
     // Show and Hidde HTML Sections
     getId('submit').style.display = "flex";
     getId('consent').checked = false;
     getId('btnSubmit').disabled = true;
-    ids = ['result', 'detail', 'gTable'];
+    ids = ['result', 'detail', 'table'];
     displayHTML(ids, 'none');
 };
 
-// Button display Details
+// Button display Details / id="btnDetail"
 function showDetail() {
     getId('detail').style.display = "block";
     displayHTML(['buttonsQuickResult'], 'none');
     scrollTo('detail');
 };
 
-// Button display Comparison Table
+// Button display Comparison Table / id="btnComp" & id="btnCompDetail"
 function showTable() {
-    getId('gTable').style.display = "block";
+    getId('table').style.display = "block";
     const ids = ['btnCompDetail', 'btnNewCalc1', 'btnComp', 'btnNewCalc2'];
     displayHTML(ids, 'none');
-    scrollTo('gTable');
+    scrollTo('table');
 };
 
-// Button delete all Results and start new
+// Button delete all Results and start new / id="btnClearTable"
 function clearGTable(gResults) {
     localStorage.clear(gResults);
 
      // Scroll to element
-     scrollTo('gForm'); 
+     scrollTo('form'); 
      getId('submit').style.display = "flex";
      getId('consent').checked = false;
      getId('btnSubmit').disabled = true;
-     ids = ['result', 'detail', 'gTable'];
+     ids = ['result', 'detail', 'table'];
      displayHTML(ids, 'none');
 };

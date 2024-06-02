@@ -28,4 +28,19 @@ body {
     padding-top: 5px;
 }
 
+.responsive-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.responsive-table th, .responsive-table td {
+    padding: 8px;
+    border: 1px solid whitesmoke;
+}
 
+.responsive-table th {
+    background-color: rgb(218,21,54);
+    color: whitesmoke;
+}
+.responsive-table td {
+    background-color: rgb(77,176,184); 
+}

@@ -2,34 +2,36 @@
 
 // Initate Array
 let gResults = [];
-
+let uuid;
 function getFormData() {
 // Extract user input
-    const company = formValue('gForm', 'company');
-    const contractDuration = formValue("gForm", 'contractDuration');
-    const usageRange = formValue("gForm", 'usageRange');
-    const mwhUsage = parseFloat(formValue("gForm", 'mwhUsage'));
-    const numberOfMonths = parseFloat(formValue('gForm', 'numberOfMonths'));
-    const priceGas = parseFloat(formValue('gForm', 'priceGas'));
-    const monthlyGas = parseFloat(formValue('gForm', 'monthlyGas'));
-    const priceDist = parseFloat(formValue('gForm', 'priceDist'));
-    const monthlyDist = parseFloat(formValue('gForm', 'monthlyDist'));
+    const company = formValue('form', 'company');
+    const contractDuration = formValue("form", 'contractDuration');
+    const usageRange = formValue("form", 'usageRange');
+    const m3Usage = parseFloat(formValue("form", 'm3Usage'));
+    const mwhUsage = parseFloat(formValue("form", 'mwhUsage'));
+    const numberOfMonths = parseFloat(formValue('form', 'numberOfMonths'));
+    const priceGas = parseFloat(formValue('form', 'priceGas'));
+    const monthlyGas = parseFloat(formValue('form', 'monthlyGas'));
+    const priceDist = parseFloat(formValue('form', 'priceDist'));
+    const monthlyDist = parseFloat(formValue('form', 'monthlyDist'));
 
 // Calculation of Results
     // Usage Cost
-    let usageCost = mwhUsage * (priceGas + priceDist);
+    let usageCost = (mwhUsage * (priceGas + priceDist)).toFixed(2);
     // Distribution Cost
-    let distCostXmonths = numberOfMonths * (monthlyGas + monthlyDist);
+    let distCost = (monthlyGas + monthlyDist).toFixed(2);
+    let distCostXmonths = (numberOfMonths * distCost).toFixed(2);
     // Regulatory Cost
     let regulatoryCost = ((priceDist * mwhUsage) + (monthlyDist * numberOfMonths)).toFixed(2);
     // Company Cost
     let companyCost = ((priceGas * mwhUsage) + (monthlyGas * numberOfMonths)).toFixed(2);
     // Total Cost
-    totalCost = (usageCost + distCostXmonths).toFixed(2);
+    totalCost = ((mwhUsage * (priceGas + priceDist)) + (numberOfMonths * distCost)).toFixed(2);
     // Monthly advance
     advancePay = (totalCost / numberOfMonths).toFixed(2);
     // Creat uuid for result
-    let uuid = crypto.randomUUID();
+    uuid = crypto.randomUUID();
 
 // Store values in local storage as Array
     // get existing array form storage
@@ -40,11 +42,13 @@ function getFormData() {
         company: company,
         contractDuration: contractDuration,
         usageRange: usageRange,
+        m3Usage: m3Usage,
         mwhUsage: mwhUsage,
         numberOfMonths: numberOfMonths,
         regulatoryCost: regulatoryCost,
         companyCost: companyCost,
         usageCost: usageCost,
+        distCost: distCost,
         distCostXmonths: distCostXmonths,
         totalCost: totalCost,
         advancePay: advancePay
@@ -140,75 +144,71 @@ function renderGRows(gResults) {
 
 // Section for HTML
 function Result(result) {
-    const html ='<div id="result" style="display:block;" class="container mt-5 mb-3">'+
+    const html ='<div id="result" style="display:block;" class="container mt-3 mb-3">'+
                     '<div class="row footer-background">'+
-                        '<h4 class="text-primary text-center text-center mt-3"><u>Celková Cena</u></h4>'+
-                        
-                        '<div class="form-label text-center col">'+
+                        '<h4 class="text-primary text-center text-center mt-3 mb-3"><u>Celková Cena</u></h4>'+
+                        '<div class="form-label text-center mb-3 col">'+
                             '<label for="total">Za ' + result.numberOfMonths + ' měsícu (Kč)</label>'+
                             '<input type="number" class="form-control text-center" id="total" name="total" value="' + result.totalCost + '" disabled>'+
                         '</div>'+
-                        '<div class="form-label text-center mb-5 col">'+
+                        '<div class="form-label text-center mb-3 col">'+
                             '<label for="totalMonth">Měsíčna Záloha (Kč)</label>'+
                             '<input type="number" class="form-control text-center" id="advance" name="totalMonth" value="' + result.advancePay + '" disabled>'+
                         '</div>'+
-                        
                     '</div>'+
-                    '<div id="buttonsQuickResult" class="row">'+
-                        '<div class="mt-3 d-grid col-6 col-md">'+
+                    '<div id="buttonsQuickResult" class="row mt-4 mb-3">'+
+                        '<div class="d-grid col-6 mt-3 col-md">'+
                             '<button id="btnNewCalc1" type="button" onclick="newCalc()" class="btn btn-primary btn-block" style="display: block;">Změnit Parametry</button>'+
                         '</div>'+
-                        '<div class="mt-3 d-grid col-6 col-md">'+
+                        '<div class="d-grid col-6 mt-3 col-md">'+
                             '<button id="btnComp" type="button" onclick="showTable()" class="btn btn-primary btn-block">Srovnat</button>'+
                         '</div>'+
-                        '<div class="mt-3 d-grid col-6 col-md">'+
+                        '<div class="d-grid col-6 mt-3 col-md">'+
                             '<button id="btnDetail" type="button" onclick="showDetail()" class="btn btn-primary btn-block">Podrobnosti</button>'+
                         '</div>'+
-                        '<div class="mt-3 d-grid col-6 col-md">'+
-                            '<button id="btnDownloadResult" type="button" onclick="" class="btn btn-primary btn-block">Stáhnout Výpočet</button>'+
+                        '<div class="d-grid col-6 mt-3 col-md">'+
+                            '<button id="btnDownloadDetail" type="button" onclick="downloadDetailCalculation()" class="btn btn-primary btn-block">Stáhnout Výpočet</button>'+
                         '</div>'+
                     '</div>'+
                 '</div>'+
-                '<div id="detail" class="container mb-5 mt-3" style="display: none">'+
+                '<div id="detail" class="container mt-4" style="display: none">'+
                     '<div class="row footer-background">'+
-                        '<h4 class="text-primary text-center mt-3"><u>Podrobnosti</u></h4>'+
-                        
-                        '<div class="form-label text-center mt-3 col-sm-6 col-lg">'+
+                        '<h4 class="text-primary text-center mt-3 mb-3"><u>Podrobnosti</u></h4>'+
+                        '<div class="form-label text-center mb-3 col-sm-6 col-lg">'+
                             '<label for="CostUsage">Obchodní Cena (Kč)</label>'+
                             '<input type="number" class="form-control text-center" id="CostUsage" name="CostUsage" value="'+result.companyCost+'" disabled>'+ 
                         '</div>'+
-                        '<div class="form-label text-center mt-3 col-sm-6 col-lg">'+
+                        '<div class="form-label text-center mb-3 col-sm-6 col-lg">'+
                             '<label for="CostDist">Regulovaná Cena (Kč)</label>'+
                             '<input type="number" class="form-control text-center" id="CostDist" name="CostDist" value="'+result.regulatoryCost+'" disabled>'+ 
                         '</div>'+
                         
-                        '<div class="form-label text-center mt-3 col-sm-6 col-lg">'+
+                        '<div class="form-label text-center mb-3 col-sm-6 col-lg">'+
                             '<label for="CostUsage">Uživatelská Cena (Kč)</label>'+
                             '<input type="number" class="form-control text-center" id="CostUsage" name="CostUsage" value="'+result.usageCost+'" disabled>'+ 
                         '</div>'+
-                        '<div class="form-label text-center mt-3 mb-3 col-sm-6 col-lg">'+
+                        '<div class="form-label text-center mb-3 col-sm-6 col-lg">'+
                             '<label for="CostDist">Distribucní Cena (Kč)</label>'+
                             '<input type="number" class="form-control text-center" id="CostDist" name="CostDist" value="'+result.distCostXmonths+'" disabled>'+ 
                         '</div>'+
-                        
                     '</div>'+
-                    '<div id="buttonsDetail" class="row">'+
-                        '<div class="mt-5 mb-1 d-grid col">'+
+                    '<div id="buttonsDetail" class="row mt-4 mb-3">'+
+                        '<div class="d-grid col">'+
                             '<button id="btnNewCalc2" type="button" onclick="newCalc()" class="btn btn-primary btn-block" style="display: block;">Změnit Parametry</button>'+
                         '</div>'+
                         
-                        '<div class="mt-5 mb-1 d-grid col">'+
+                        '<div class="d-grid col">'+
                             '<button id="btnCompDetail" type="button" onclick="showTable()" class="btn btn-primary btn-block" style="display: block;">Srovnat</button>'+
                         '</div>'+
                         
-                        '<div class="mt-5 mb-1 d-grid col">'+
-                            '<button id="btnDownloadDetail" type="button" onclick="" class="btn btn-primary btn-block">Stáhnout Podrobnosti</button>'+
+                        '<div class="d-grid col">'+
+                            '<button id="btnDownloadDetail" type="button" onclick="downloadDetailCalculation()" class="btn btn-primary btn-block">Stáhnout Podrobnosti</button>'+
                         '</div>'+
                     '</div>'+
                 '</div>'+
-                '<div id="gTable" style="overflow-x: auto; display: none;" class="container">'+
+                '<div id="table" style="display: none;" class="mt-3 mb-3">'+
                     '<h4 class="text-danger text-center">Srovnání Výpočtu</h4>'+
-                        '<table id="savedComp" class="text-center footer-background col-12">'+
+                        '<table id="savedComp" class="responsive-table text-center col-12">'+
                             '<tr>'+
                                 '<th>Dodavatel</th>'+
                                 '<th>Smlouva</th>'+
@@ -218,17 +218,17 @@ function Result(result) {
                                 '<th>Záloha</th>'+
                             '</tr>'+
                         '</table>'+
-                    '<div class="row">'+
-                        '<div class="mt-5 mb-5 d-grid col">'+
+                    '<div id="buttonsTable" class="row mt-4 mb-3">'+
+                        '<div class="d-grid col">'+
                             '<button id="btnNewCalc" type="button" onclick="newCalc()" class="btn btn-primary btn-block">Změnit Parametry</button>'+
                         '</div>'+
                         
-                        '<div class="mt-5 mb-5 d-grid col">'+
+                        '<div class="d-grid col">'+
                             '<button id="btnClearTable" type="button" onclick="clearGTable()" class="btn btn-primary btn-block">Vše Smazat a Začít Znova</button>'+
                         '</div>'+
                         
-                        '<div class="mt-5 mb-5 d-grid col">'+
-                            '<button id="btnDownload" type="button" onclick="" class="btn btn-primary btn-block">Stáhnout Srovnání</button>'+
+                        '<div class="d-grid col">'+
+                            '<button id="btnDownload" type="button" onclick="downloadComparision()" class="btn btn-primary btn-block">Stáhnout Srovnání</button>'+
                         '</div>'+
                     '</div>'+
                 '</div>';
@@ -282,3 +282,51 @@ function newButtonsAfterQuickResult() {
                 '</div>';
 return html;
 };
+
+//Conversion m3 to MWh and vice versa
+function m3toMWh (){
+    var m3 = getId('m3Usage').value;
+    var mWh = Math.round(((m3 * 0.9968 * 0.0108987) + Number.EPSILON) * 1000) / 1000;
+    getId('mwhUsage').value = mWh;
+};
+function mWhtoM3 (){
+    var mWh = getId('mwhUsage').value;
+    var m3 = Math.round(((mWh / 0.9968 / 0.0108987) + Number.EPSILON) * 10) / 10;
+    getId('m3Usage').value = m3;
+};
+
+// Get the checkbox and the button elements
+const checkbox = document.getElementById('consent');
+const button = document.getElementById('btnSubmit');
+// Add an event listener to the checkbox to monitor its state
+checkbox.addEventListener('change', function() {
+  // Enable the button if the checkbox is checked, otherwise disable it
+  button.disabled = !checkbox.checked;
+});
+
+// Iinput field onclick delete default value
+document.addEventListener('DOMContentLoaded', (event) => {
+    const inputField1 = getId('mwhUsage');
+    const inputField2 = getId('m3Usage');
+
+    inputField1.addEventListener('focus', () => {
+        if (inputField1.value === '0') {
+            inputField1.value = '';
+        }
+    });
+    inputField1.addEventListener('blur', () => {
+        if (inputField1.value === '') {
+            inputField1.value = '0';
+        }
+    });
+    inputField2.addEventListener('focus', () => {
+        if (inputField2.value === '0') {
+            inputField2.value = '';
+        }
+    });
+    inputField2.addEventListener('blur', () => {
+        if (inputField2.value === '') {
+            inputField2.value = '0';
+        }
+    });
+});

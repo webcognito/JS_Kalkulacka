@@ -92,11 +92,11 @@
                 <h4>Spotřeba (m<sup>3</sup>)</h4>
                 <sup>(1m<sup>3</sup> = 0,01086 MWh)</sup>
                 <div class="form-floating col">
-                    <input onkeyup="m3toMWh()" type="number" step=0.01 class="form-control" id="m3Usage" name="m3Usage" value="0" placeholder="m3">
+                    <input onkeyup="m3toMWh()" type="number" step=0.01 class="form-control" id="usage1" name="m3Usage" value="0" placeholder="m3">
                     <label for="m3Usage">m<sup>3</sup></label>
                 </div>
                 <div class="form-floating col">
-                    <input onkeyup="mWhtoM3()" type="number" step=0.001 class="form-control" id="usage" name="mwhUsage" value="0" placeholder="MWh">
+                    <input onkeyup="mWhtoM3()" type="number" step=0.001 class="form-control" id="usage2" name="mwhUsage" value="0" placeholder="MWh">
                     <label for="mwhUsage">MWh</label> 
                 </div>
             <!-- Number of Months -->
@@ -150,7 +150,6 @@
                 </div>
         <!-- Submit and Result Section -->    
                 <div id="submit" class="row m-3" style="display: flex;">
-                    
                     <div class="form-check col">
                         <input class="form-check-input" type="checkbox" id="consent" required>
                         <label class="form-check-label" for="consent">
@@ -165,9 +164,7 @@
             </form>
         </div>
 
-
 <!-- FOOTER -->
-
     <footer>
         <div class="row">
             <div class="col-8 footer-background d-flex align-items-center justify-content-center">
@@ -177,19 +174,17 @@
                 <img src="../static/logo/simple2Crop.png" class="mx-auto d-block footer-background2" alt="WebCognito_Lion" width="120" height="60">
             </div>
         </div>
-       
     </footer>
 
 <!--<script type="module" src="../js/gasFormLogic.js"></script>-->
 <script src="../js/gasPage/FormLogic.js"></script>
-<script src="../js/gasPage/shortFunctions.js"></script>
+<script src="../js/shortFunctions.js"></script>
 <script src="../js/gasPage/buttonFunctions.js"></script>
 <script src="../js/gasPage/gDownload.js"></script>
 <script src="../js/sharedCode.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js" integrity="sha512-a9NgEEK7tsCvABL7KqtUTQjl69z7091EVPpw5KxPlZ93T141ffe1woLtbXTX+r2/8TtTvRX/v4zTL2UlMUPgwg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.min.js" integrity="sha512-P0bOMePRS378NwmPDVPU455C/TuxDS+8QwJozdc7PGgN8kLqR4ems0U/3DeJkmiE31749vYWHvBOtR+37qDCZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
 
 </body>
 </html>

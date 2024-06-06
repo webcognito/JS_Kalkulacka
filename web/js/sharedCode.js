@@ -9,7 +9,8 @@ checkbox.addEventListener('change', function() {
 
 // Iinput field onclick delete default value
 document.addEventListener('DOMContentLoaded', (event) => {
-    const inputField1 = getId('usage');
+    const inputField1 = getId('usage1');
+    const inputField2 = getId('usage2');
 
     inputField1.addEventListener('focus', () => {
         if (inputField1.value === '0') {
@@ -19,6 +20,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
     inputField1.addEventListener('blur', () => {
         if (inputField1.value === '') {
             inputField1.value = '0';
+        }
+    });
+    inputField2.addEventListener('focus', () => {
+        if (inputField2.value === '0') {
+            inputField2.value = '';
+        }
+    });
+    inputField2.addEventListener('blur', () => {
+        if (inputField2.value === '') {
+            inputField2.value = '0';
         }
     });
 });

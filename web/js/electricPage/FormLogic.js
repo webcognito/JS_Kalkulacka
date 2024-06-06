@@ -1,62 +1,72 @@
 // Logic for Gas Form
 
 // Initate Array
-let gResults = [];
+let eResults = [];
 let uuid;
 function getFormData() {
 // Extract user input
     const company = formValue('form', 'company');
     const contractDuration = formValue("form", 'contractDuration');
-    const usageRange = formValue("form", 'usageRange');
-    const m3Usage = parseFloat(formValue("form", 'm3Usage'));
-    const mwhUsage = parseFloat(formValue("form", 'usage2'));
+    const distCode = formValue("form", 'distCode');
+    const usageVT = parseFloat(formValue("form", 'usage1'));
+    const usageNT = parseFloat(formValue("form", 'usage2'));
     const numberOfMonths = parseFloat(formValue('form', 'numberOfMonths'));
-    const priceGas = parseFloat(formValue('form', 'priceGas'));
-    const monthlyGas = parseFloat(formValue('form', 'monthlyGas'));
-    const priceDist = parseFloat(formValue('form', 'priceDist'));
-    const monthlyDist = parseFloat(formValue('form', 'monthlyDist'));
+    const priceVT = parseFloat(formValue('form', 'priceVT'));
+    const priceNT = parseFloat(formValue('form', 'priceNT'));
+    const constPay = parseFloat(formValue('form', 'constPay'));
+    const priceInputBreaker = parseFloat(formValue('form', 'priceInputBreaker'));
+    const OTE = parseFloat(formValue('form', 'OTE'));
+    const byConsumption = parseFloat(formValue('form', 'byConsumption'));
+    const byBreaker = parseFloat(formValue('form', 'byBreaker'));
+    const mainBreaker = parseFloat(formValue('form', 'mainBreaker'));
+    const phases = parseFloat(formValue('form', 'phases'));
 
 // Calculation of Results
-    // Usage Cost
-    let usageCost = (mwhUsage * (priceGas + priceDist)).toFixed(2);
-    // Distribution Cost
-    let distCost = (monthlyGas + monthlyDist).toFixed(2);
-    let distCostXmonths = (numberOfMonths * distCost).toFixed(2);
-    // Regulatory Cost
-    let regulatoryCost = ((priceDist * mwhUsage) + (monthlyDist * numberOfMonths)).toFixed(2);
-    // Company Cost
-    let companyCost = ((priceGas * mwhUsage) + (monthlyGas * numberOfMonths)).toFixed(2);
-    // Total Cost
-    totalCost = ((mwhUsage * (priceGas + priceDist)) + (numberOfMonths * distCost)).toFixed(2);
-    // Monthly advance
-    advancePay = (totalCost / numberOfMonths).toFixed(2);
     // Creat uuid for result
     uuid = crypto.randomUUID();
+    // Usage Cost
+    let calCostVT = usageVT * priceVT;
+    let calCostNT = usageNT * priceNT;
+    let costVT = calCostVT.toFixed(2);
+    let costNT = calCostNT.toFixed(2);
+    // Monthly payments
+    let costMonth = constPay + priceInputBreaker + OTE;
+    // POZE
+    let aPoze = byConsumption * (usageNT + usageVT);
+    let bPoze = byBreaker * mainBreaker * phases * 12;
+    let poze = calPoze(aPoze, bPoze);
+
+    // Total Cost
+    totalCost = (calCostVT + calCostNT + (numberOfMonths * costMonth) + poze).toFixed(2);
+    // Monthly advance
+    advancePay = (totalCost / numberOfMonths).toFixed(2);
+
 
 // Store values in local storage as Array
     // get existing array form storage
-    gResults = getFromLocalStorage();
+    eResults = getFromLocalStorage();
     // create new object
     const result = {
         uuid: uuid,
         company: company,
         contractDuration: contractDuration,
-        usageRange: usageRange,
-        m3Usage: m3Usage,
-        mwhUsage: mwhUsage,
+        distCode: distCode,
+        usageVT: usageVT,
+        usageNT: usageNT,
         numberOfMonths: numberOfMonths,
-        regulatoryCost: regulatoryCost,
-        companyCost: companyCost,
-        usageCost: usageCost,
-        distCost: distCost,
-        distCostXmonths: distCostXmonths,
+        mainBreaker: mainBreaker,
+        phases: phases,
+        costVT: costVT,
+        costNT: costNT,
+        costMonth: costMonth,
+        poze: poze,
         totalCost: totalCost,
         advancePay: advancePay
     };
     // check if result object should be added to array
     addToArray(result);
     // add updated results array to local storage
-    addToLocalStorage(gResults);
+    addToLocalStorage(eResults);
 
 // Creat result HTML
     getId('submit').style.display = "none"
@@ -64,18 +74,29 @@ function getFormData() {
     getId('result').outerHTML = resultDiv;
     scrollTo('result');
     gResults = getFromLocalStorage();
-    renderGRows(gResults);
+    renderERows(eResults);
+};
+
+// Calculate which POZE will be adden
+function calPoze (aPoze, bPoze) {
+    let calpoze
+    if (aPoze >= bPoze) {
+        calpoze = bPoze;
+    } else {
+        calpoze = aPoze;
+    }
+    return calpoze;
 };
 
 // Get array from local storage
 function getFromLocalStorage() {
-    const reference = localStorage.getItem('gResults');
+    const reference = localStorage.getItem('eResults');
     if (reference) {
-        gResults = JSON.parse(reference);
+        eResults = JSON.parse(reference);
     } else {
-        gResults = [];
+        eResults = [];
     }
-    return gResults
+    return eResults
 };
 
 // Add result to array only if uuid doesn't exist
@@ -85,24 +106,24 @@ function addToArray(result) {
         return false;
     }
     // Otherwise add result object to array
-    gResults.push(result);
+    eResults.push(result);
     return true;
 };
 
 // Checks if uuid allready present in array and returns true/false
 function checkUuid(uuid) {
-    return gResults.some(function (gfg) {
+    return eResults.some(function (gfg) {
         return gfg.uuid === uuid;
     });
 };
 
 // Add updated array to local storage
-function addToLocalStorage(gResults) {
-    localStorage.setItem('gResults', JSON.stringify(gResults));
+function addToLocalStorage(eResults) {
+    localStorage.setItem('eResults', JSON.stringify(eResults));
 };
 
 // Render table with the data from local storage
-function renderGRows(gResults) {
+function renderERows(eResults) {
     let table = document.getElementById('savedComp');
 
     // delet existing rows, exclude table head
@@ -112,7 +133,7 @@ function renderGRows(gResults) {
     }
     
     // create new table rows with updated objects fro array
-    for (let row of gResults) {
+    for (let row of eResults) {
         let tr = document.createElement('tr');
         let td1 = document.createElement('td');
         td1.textContent = row.company;
@@ -123,20 +144,24 @@ function renderGRows(gResults) {
         tr.appendChild(td2);
 
         let td3 = document.createElement('td');
-        td3.textContent = row.mwhUsage;
+        td3.textContent = row.usageVT;
         tr.appendChild(td3);
 
         let td4 = document.createElement('td');
-        td4.textContent = row.numberOfMonths;
+        td4.textContent = row.usageNT;
         tr.appendChild(td4);
 
         let td5 = document.createElement('td');
-        td5.textContent = row.totalCost;
+        td5.textContent = row.numberOfMonths;
         tr.appendChild(td5);
 
         let td6 = document.createElement('td');
-        td6.textContent = row.advancePay;
+        td6.textContent = row.totalCost;
         tr.appendChild(td6);
+
+        let td7 = document.createElement('td');
+        td7.textContent = row.advancePay;
+        tr.appendChild(td7);
 
         table.appendChild(tr);
     }
@@ -175,21 +200,21 @@ function Result(result) {
                     '<div class="row footer-background">'+
                         '<h4 class="text-primary text-center mt-3 mb-3"><u>Podrobnosti</u></h4>'+
                         '<div class="form-label text-center mb-3 col-sm-6 col-lg">'+
-                            '<label for="CostUsage">Obchodní Cena (Kč)</label>'+
-                            '<input type="number" class="form-control text-center" id="CostUsage" name="CostUsage" value="'+result.companyCost+'" disabled>'+ 
+                            '<label for="CostUsageVT">Cena za Vysoký Tarif (Kč)</label>'+
+                            '<input type="number" class="form-control text-center" id="CostUsageVT" name="CostUsageVT" value="'+result.costVT+'" disabled>'+ 
                         '</div>'+
                         '<div class="form-label text-center mb-3 col-sm-6 col-lg">'+
-                            '<label for="CostDist">Regulovaná Cena (Kč)</label>'+
-                            '<input type="number" class="form-control text-center" id="CostDist" name="CostDist" value="'+result.regulatoryCost+'" disabled>'+ 
+                            '<label for="CostUsageNT">Cena za Nizky Tarif (Kč)</label>'+
+                            '<input type="number" class="form-control text-center" id="CostUsageNT" name="CostUsageNT" value="'+result.costNT+'" disabled>'+ 
                         '</div>'+
                         
                         '<div class="form-label text-center mb-3 col-sm-6 col-lg">'+
-                            '<label for="CostUsage">Uživatelská Cena (Kč)</label>'+
-                            '<input type="number" class="form-control text-center" id="CostUsage" name="CostUsage" value="'+result.usageCost+'" disabled>'+ 
+                            '<label for="monthlyPay">Měsíční platba (Kč)</label>'+
+                            '<input type="number" class="form-control text-center" id="monthlyPay" name="monthlyPay" value="'+result.costMonth+'" disabled>'+ 
                         '</div>'+
                         '<div class="form-label text-center mb-3 col-sm-6 col-lg">'+
-                            '<label for="CostDist">Distribucní Cena (Kč)</label>'+
-                            '<input type="number" class="form-control text-center" id="CostDist" name="CostDist" value="'+result.distCostXmonths+'" disabled>'+ 
+                            '<label for="POZE">Poze (Kč)</label>'+
+                            '<input type="number" class="form-control text-center" id="POZE" name="POZE" value="'+result.poze+'" disabled>'+ 
                         '</div>'+
                     '</div>'+
                     '<div id="buttonsDetail" class="row mt-4 mb-3">'+
@@ -212,7 +237,8 @@ function Result(result) {
                             '<tr>'+
                                 '<th>Dodavatel</th>'+
                                 '<th>Smlouva</th>'+
-                                '<th>Spotřeba MWh</th>'+
+                                '<th>Spotřeba VT</th>'+
+                                '<th>Spotřeba NT</th>'+
                                 '<th>Měsícu</th>'+
                                 '<th>Cena</th>'+
                                 '<th>Záloha</th>'+
@@ -283,23 +309,10 @@ function newButtonsAfterQuickResult() {
 return html;
 };
 
-//Conversion m3 to MWh and vice versa
-function m3toMWh (){
-    var m3 = getId('usage1').value;
-    var mWh = Math.round(((m3 * 0.9968 * 0.0108987) + Number.EPSILON) * 1000) / 1000;
-    getId('usage2').value = mWh;
-};
-function mWhtoM3 (){
-    var mWh = getId('usage2').value;
-    var m3 = Math.round(((mWh / 0.9968 / 0.0108987) + Number.EPSILON) * 10) / 10;
-    getId('usage1').value = m3;
-};
-
-/*
 // Iinput field onclick delete default value
 document.addEventListener('DOMContentLoaded', (event) => {
-    const inputField1 = getId('usage');
-    const inputField2 = getId('m3Usage');
+    const inputField1 = getId('priceVT');
+    const inputField2 = getId('priceNT');
 
     inputField1.addEventListener('focus', () => {
         if (inputField1.value === '0') {
@@ -322,4 +335,3 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 });
-*/

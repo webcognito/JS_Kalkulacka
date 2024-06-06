@@ -3,32 +3,21 @@
 // <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js" integrity="sha512-a9NgEEK7tsCvABL7KqtUTQjl69z7091EVPpw5KxPlZ93T141ffe1woLtbXTX+r2/8TtTvRX/v4zTL2UlMUPgwg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 // <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.min.js" integrity="sha512-P0bOMePRS378NwmPDVPU455C/TuxDS+8QwJozdc7PGgN8kLqR4ems0U/3DeJkmiE31749vYWHvBOtR+37qDCZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-// Downloading detailed calculation
+// Downloading detailed calculation / id="btnDownloadDetail" 2x
 function downloadDetailCalculation() {
-
-  // data for detailed calculation result
-  const eCompany = document.getElementById("comp").rows[0].cells[0].innerHTML;
-  const eContract = document.getElementById("comp").rows[0].cells[1].innerHTML;
-  const eDistCode = document.getElementById("comp").rows[0].cells[2].innerHTML;
-  const eUsageVT = document.getElementById("comp").rows[0].cells[3].innerHTML;
-  const eUsageNT = document.getElementById("comp").rows[0].cells[4].innerHTML;
-  const eMainBreaker = document.getElementById("comp").rows[0].cells[5].innerHTML;
-  const ePhases = document.getElementById("comp").rows[0].cells[6].innerHTML;
-  const eCostVT = document.getElementById("comp").rows[0].cells[7].innerHTML;
-  const eCostNT = document.getElementById("comp").rows[0].cells[8].innerHTML;
-  const eCostMonth = document.getElementById("comp").rows[0].cells[9].innerHTML;
-  const ePoze = document.getElementById("comp").rows[0].cells[10].innerHTML;
-  const eNumberOfMonths = document.getElementById("comp").rows[0].cells[11].innerHTML;
-  const eTotal = document.getElementById("comp").rows[0].cells[12].innerHTML;
-  const eAdvance = document.getElementById("comp").rows[0].cells[13].innerHTML;
-
+  // Retrieve Array from localStorage
+      const storedArray = localStorage.getItem('eResults');
+  // Parse JSON string back to Array
+      const parsedArray = JSON.parse(storedArray);
+  // Find item with newest uuid from FormLogic
+      const foundResult = parsedArray.find(item => item.uuid === uuid);
   var dd = {
       header: { text: euDate(), style: 'header'},
       footer: {text: "Kalkulačka by WebCognito.com", style: 'footer'},
       watermark: {text: "WebCognito.com", color: '#0e6dfc', opacity: 0.05},
       
       content: [
-          {text: 'Plyn - Vaše Údaje a Cena', margin: [0, 0, 0, 10], style: 'title'},
+          {text: 'Elektřina - Vaše Údaje a Cena', margin: [0, 0, 0, 10], style: 'title'},
           {   
               style: 'table',
               table: {
@@ -45,11 +34,11 @@ function downloadDetailCalculation() {
                               {}
                             ],
                             [
-                              {text: eCompany, colSpan: 2, border: [true, false, true, true], alignment: 'center'}, 
+                              {text: foundResult.company, colSpan: 2, border: [true, false, true, true], alignment: 'center'}, 
                               {}, 
-                              {text: eContract, colSpan: 2, border: [true, false, true, true], alignment: 'center'}, 
+                              {text: foundResult.contractDuration, colSpan: 2, border: [true, false, true, true], alignment: 'center'}, 
                               {}, 
-                              {text: eDistCode, colSpan: 2, border: [true, false, true, true], alignment: 'center'}, 
+                              {text: foundResult.distCode, colSpan: 2, border: [true, false, true, true], alignment: 'center'}, 
                               {}
                             ],
                             [
@@ -69,10 +58,10 @@ function downloadDetailCalculation() {
                                 {}
                               ],
                             [
-                              {text: eUsageVT + ' MWh', colSpan: 3, bold: true, color:'white', fillColor: '#0e6dfc', border: [true, false, true, true], alignment: 'center'}, 
+                              {text: foundResult.usageVT + ' MWh', colSpan: 3, bold: true, color:'white', fillColor: '#0e6dfc', border: [true, false, true, true], alignment: 'center'}, 
                               {}, 
                               {}, 
-                              {text: eUsageNT + ' MWh', colSpan: 3, bold: true, color:'white', fillColor: '#0e6dfc', border: [true, false, true, true], alignment: 'center'}, 
+                              {text: foundResult.usageNT + ' MWh', colSpan: 3, bold: true, color:'white', fillColor: '#0e6dfc', border: [true, false, true, true], alignment: 'center'}, 
                               {}, 
                               {}
                             ],
@@ -85,10 +74,10 @@ function downloadDetailCalculation() {
                               {}
                             ], 
                             [
-                              {text: eMainBreaker + ' A', colSpan: 3, border: [true, false, true , false], alignment: 'center'}, 
+                              {text: foundResult.mainBreaker + ' A', colSpan: 3, border: [true, false, true , false], alignment: 'center'}, 
                               {},
                               {}, 
-                              {text: ePhases, colSpan: 3, fillColor: '', border: [true, false, true, false], alignment: 'center'}, 
+                              {text: foundResult.phases, colSpan: 3, fillColor: '', border: [true, false, true, false], alignment: 'center'}, 
                               {}, 
                               {}
                             ],
@@ -101,10 +90,10 @@ function downloadDetailCalculation() {
                               {}
                             ],
                             [
-                              {text: eCostVT + ' Kč', colSpan: 3, color:'white', fillColor: '#0e6dfc', border: [true, false, true, true], alignment: 'center'}, 
+                              {text: foundResult.costVT + ' Kč', colSpan: 3, color:'white', fillColor: '#0e6dfc', border: [true, false, true, true], alignment: 'center'}, 
                               {},
                               {},
-                              {text: eCostNT + ' Kč', colSpan: 3, color:'white', fillColor: '#0e6dfc', border: [true, false, true, true], alignment: 'center'}, 
+                              {text: foundResult.costNT + ' Kč', colSpan: 3, color:'white', fillColor: '#0e6dfc', border: [true, false, true, true], alignment: 'center'}, 
                               {}, 
                               {}
                             ],
@@ -117,10 +106,10 @@ function downloadDetailCalculation() {
                               {}
                             ],
                             [
-                              {text: eCostMonth + ' Kč', colSpan: 3, border: [true, false, true, true], alignment: 'center'}, 
+                              {text: foundResult.costMonth + ' Kč', colSpan: 3, border: [true, false, true, true], alignment: 'center'}, 
                               {},
                               {},
-                              {text: ePoze + ' Kč', colSpan: 3, border: [true, false, true, true], alignment: 'center'}, 
+                              {text: foundResult.poze + ' Kč', colSpan: 3, border: [true, false, true, true], alignment: 'center'}, 
                               {}, 
                               {}
                             ],
@@ -136,15 +125,15 @@ function downloadDetailCalculation() {
                                 {text: 'Měsíčna Záloha', colSpan: 3, border: [true, false, true , false], style: 'firstRow'}, 
                                 {},
                                 {}, 
-                                {text: 'Celková Cena za ' + eNumberOfMonths + ' měsícu', colSpan: 3, fillColor: '#ff9999', border: [true, false, true, false], style: 'firstRow'}, 
+                                {text: 'Celková Cena za ' + foundResult.numberOfMonths + ' měsícu', colSpan: 3, fillColor: '#ff9999', border: [true, false, true, false], style: 'firstRow'}, 
                                 {}, 
                                 {}
                             ],
                             [
-                                {text: eAdvance + ' Kč', colSpan: 3, border: [true, false, true, false], alignment: 'center'}, 
+                                {text: foundResult.advancePay + ' Kč', colSpan: 3, border: [true, false, true, false], alignment: 'center'}, 
                                 {}, 
                                 {}, 
-                                {text: eTotal + ' Kč', colSpan: 3, fillColor: '#ff9999', fontSize: 15, bold: true, border: [true, false, true, false], decoration: 'underline', decorationStyle: 'double', alignment: 'center'}, 
+                                {text: foundResult.totalCost + ' Kč', colSpan: 3, fillColor: '#ff9999', fontSize: 15, bold: true, border: [true, false, true, false], decoration: 'underline', decorationStyle: 'double', alignment: 'center'}, 
                                 {}, 
                                 {}
                             ],
@@ -193,10 +182,10 @@ pdfMake.createPdf(dd).download(pdfNameCalc().toString());
 function downloadComparision() {
   // get data from local storage 
   // Format: [{company: "PRE", contract: "1 year", usage: "3", months: "12", total: "2400", advance: "200"}]
-  const eRows = getFromLocalStorage();
+  const eResults = getFromLocalStorage();
 
   // Columns display order
-  let columns = ['company', 'contract', 'usageVT', 'usageNT', 'months', 'total', 'advance'];
+  let columns = ['company', 'contractDuration', 'usageVT', 'usageNT', 'numberOfMonths', 'totalCost', 'advancePay'];
 
   tableLayouts = {
       compTable:{
@@ -227,7 +216,7 @@ function downloadComparision() {
                   //Function to build table
                   body: buildTableBody(
                           // External Data
-                          eRows,
+                          eResults,
                           // Columns display order
                           columns,
                           // Show headers?

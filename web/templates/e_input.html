@@ -172,16 +172,16 @@
                 </div>
             <!-- POZE -->
                 <h4>Podporovaných zdrojů energie (POZE)</h4>
-                <div class="form-lable col">
+                <div class="form-lable col-6 col-md">
                     <label for="byConsumption">Podle spotřeby</label>
                     <input type="number" step=0.01 class="form-control" id="byConsumption" name="byConsumption" placeholder="[Kč/MWh]">                
                 </div>
-                <div class="col">
+                <div class="col-6 col-md">
                     <label for="byBreaker">Podle jističe</label>
                     <input type="number" step=0.01 class="form-control" id="byBreaker" name="byBreaker" placeholder="Kč">
                 </div>
                 
-                <div class="form-label col">
+                <div class="form-label col-6 col-md">
                     <label for="mainBreaker">Hlavna jističe</label>
                     <input type="number" class="form-select" class="form-control" id="mainBreaker" name="mainBreaker" placeholder="(A)"  aria-label="Default select example" list="breaker">
                     <datalist id="breaker">
@@ -196,7 +196,7 @@
                         <option value="100"></option>
                     </datalist>
                 </div>
-                <div class="col">
+                <div class="col-6 col-md">
                     <label for="phases">Počet fází</label>
                     <select id="phases" name="phases" class="form-select">
                         <option value="">Vyberte</option>
@@ -209,15 +209,19 @@
                 </div>
         <!-- Submit and Result Section -->          
                 <div id="submit" class="row m-3" style="display: flex;">      
-                    <div class="form-check col">
+                    <div class="col-1"></div>
+                    <div class="form-check col-10">
                          <input class="form-check-input" type="checkbox" id="consent" required>
                         <label class="form-check-label" for="consent">
                             Rozumím, že vypočtené výsledky jsou pouze orientační a každý poskytovatel provádí vlastní výpočty.
                         </label>
-                    </div> 
-                     <div class="d-grid mt-5 mb-5">
-                        <button id="btnSubmit" type="button" onclick="getFormData()" class="btn btn-primary btn-block" disabled>Vypočítat</button>
                     </div>
+                    <div class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div class="d-grid mt-3 col-9">
+                        <button id="btnSubmit" type="button" onclick="getFormData()" class="btn btn-primary btn-block px-5" disabled>Vypočítat</button>
+                    </div>
+                    <div class="col-2"></div>
                 </div>
                 <div id="result"></div>
             </form>

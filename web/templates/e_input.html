@@ -51,8 +51,8 @@
                 <h2 class="text-center text-primary"><u>Elektřina</u></h2>
                 <div class="form-label text-center col-12 col-md-4 mb-3">
                     <label for="company"><h4>Dodavatel</h4></label>
-                    <input type="text" class="form-control" id="company" name="company" placeholder="Vyberte" list="elecCompany">
-                    <datalist id="elecCompany">
+                    <input type="text" class="form-control text-center-input" id="company" name="company" placeholder="..." list="companyName">
+                    <datalist id="companyName">
                         <option value="ČEZ"></option>
                         <option value="E.ON"></option>
                         <option value="PRE"></option>
@@ -63,7 +63,7 @@
                 </div>
                 <div class="form-label text-center col-6 col-md-4 mb-3">
                     <label for="contractDuration"><h4>Smlouva</h4></label>
-                    <select class="form-select" name="contractDuration" id="contractDuration">
+                    <select class="form-select text-center-select-input" name="contractDuration" id="contractDuration">
                         <option value="">Vyberte</option>
                         <option value="Doba neurčita">Doba neurčita</option>
                         <option value="1 Rok">Doba určita 1 Rok</option>
@@ -73,7 +73,7 @@
                 </div>
                 <div class="form-label text-center col-6 col-md-4 mb-3">
                     <label for="distCode"><h4><abbr title="Distribuční sazba">Dist. sazba</abbr></h4></label>
-                    <select class="form-select" name="distCode" id="distCode">
+                    <select class="form-select text-center-select-input" name="distCode" id="distCode">
                         <option value="">Vyberte</option>
                         <optgroup label="Standart">
                         <option value="D01d">D01d</option>
@@ -109,17 +109,17 @@
             <!-- Usage VT -->
                 <h4>Spotřeba v MWh</h4>
                 <div class="form-floating col">
-                    <input type="number" step=any class="form-control" id="usage1" name="usageVT" value="0" placeholder="MWh">
+                    <input type="number" step=any class="form-control text-end" id="usage1" name="usageVT" value="0" placeholder="MWh">
                     <label for="usageVT">Vysoký tarif (VT)</label>
                 </div>
             <!-- Usage NT -->
                 <div class="form-floating col mb-3">
-                    <input type="number" step=any class="form-control" id="usage2" name="usageNT" value="0" placeholder="MWh">
+                    <input type="number" step=any class="form-control text-end" id="usage2" name="usageNT" value="0" placeholder="MWh">
                     <label for="usageNT">Nízký tarif (NT)</label>
                 </div>  
             <!-- Number of Months -->
                 <div class="form-floating col">
-                    <select class="form-select form-control" id="numberOfMonths" name="numberOfMonths">
+                    <select class="form-select form-control text-center-select-input" id="numberOfMonths" name="numberOfMonths">
                         <option value="12">12</option>
                         <option value="11">11</option>
                         <option value="10">10</option>
@@ -139,16 +139,17 @@
                     <hr class="opacity-75 border-primary border-top border-3">
                 </div>
             <!-- Price VT -->
-                <h4>Celková Cena</h4>
-                    <sup>(jednotky včetně daně z elektřiny a systémových služeb)</sup>
-                <div class="form-floating col">
-                    <input type="number" step=0.01 class="form-control" id="priceVT" name="priceVT" value="0" placeholder="[Kč/MWh]">
+                <h4 class="text-center">Celková Cena</h4>
+                    <sup class="text-center">(jednotky včetně daně z elektřiny a systémových služeb)</sup>
+                <div class="form-label text-center col">
                     <label for="priceVT">Vysoký tarif <small>[Kč/MWh]</small></label>
+                    <input type="number" step=0.01 class="form-control text-center-input" id="priceVT" name="priceVT" value="0.00">
                 </div>
             <!-- Price NT -->
-                <div class="form-floating col mb-3">
-                    <input type="number" step=0.01 class="form-control" id="priceNT" name="priceNT" value="0" placeholder="[Kč/MWh]">
+                <div class="form-label text-center col mb-3">
                     <label for="priceNT">Nízký tarif <small>[Kč/MWh]</small></label>
+                    <input type="number" step=0.01 class="form-control text-center-input" id="priceNT" name="priceNT" value="0.00">
+                   
                 </div>
                 <div class="container">
                     <hr class="opacity-75 border-primary border-top border-3">
@@ -156,33 +157,33 @@
             <!-- Monthly Payments -->
                 <h4>Měsíční platby</h4>
                 <div class="form-label col">
-                    <label for="constPay">Cena za dodávku - Stálá Platba</label>
-                    <input type="number" step=0.01 class="form-control" id="constPay" name="constPay" placeholder="Kč"> 
+                    <label class="text-center" for="constPay">Cena za dodávku - Stálá Platba <small>[Kč]</small></label>
+                    <input type="number" step=0.01 class="form-control text-center" id="constPay" name="constPay" value="0.00"> 
                 </div>
-                <div class="form-label col">
-                    <label for="priceInputBreaker">Cena za příkon podle jističe</label>
-                    <input type="number" step=0.01 class="form-control" id="priceInputBreaker" name="priceInputBreaker" placeholder="Kč">
+                <div class="form-label text-center col">
+                    <label for="priceInputBreaker">Cena za příkon podle jističe <small>[Kč]</small></label>
+                    <input type="number" step=0.01 class="form-control text-center" id="priceInputBreaker" name="priceInputBreaker" value="0.00" placeholder="Kč">
                 </div>
-                <div class="form-label col">
-                    <label for="OTE">Činnost operátora trhu (OTE)</label>
-                    <input type="number" step=0.01 class="form-control" id="OTE" name="OTE" placeholder="Kč">
+                <div class="form-label text-center col">
+                    <label for="OTE">Činnost operátora trhu (OTE) <small>[Kč]</small></label>
+                    <input type="number" step=0.01 class="form-control text-center" id="OTE" name="OTE" value="0.00">
                 </div>
                 <div class="container">
                     <hr class="opacity-75 border-primary border-top border-3">
                 </div>
             <!-- POZE -->
                 <h4>Podporovaných zdrojů energie (POZE)</h4>
-                <div class="form-lable col-6 col-md">
-                    <label for="byConsumption">Podle spotřeby</label>
-                    <input type="number" step=0.01 class="form-control" id="byConsumption" name="byConsumption" placeholder="[Kč/MWh]">                
+                <div class="form-lable text-center col-6 col-md">
+                    <label for="byConsumption">Podle spotřeby <small>[Kč/MWh]</small></label>
+                    <input type="number" step=0.01 class="form-control text-center" id="byConsumption" name="byConsumption" value="0.00">                
                 </div>
-                <div class="col-6 col-md">
-                    <label for="byBreaker">Podle jističe</label>
-                    <input type="number" step=0.01 class="form-control" id="byBreaker" name="byBreaker" placeholder="Kč">
+                <div class="col-6 text-center col-md">
+                    <label for="byBreaker">Podle jističe <small>[Kč]</small></label>
+                    <input type="number" step=0.01 class="form-control text-center" id="byBreaker" name="byBreaker" value="0.00">
                 </div>
-                <div class="form-label col-6 col-md">
+                <div class="form-label text-center col-6 col-md">
                     <label for="mainBreaker">Hlavna jističe</label>
-                    <select class="form-select form-control" id="mainBreaker" name="mainBreaker">
+                    <select class="form-select form-control text-center-select-input" id="mainBreaker" name="mainBreaker" style="text-align: end;">
                         <option value="">(A)</option>
                         <option value="10">10</option>
                         <option value="16">16</option>
@@ -195,9 +196,9 @@
                         <option value="100">100</option>
                     </select>
                 </div>
-                <div class="col-6 col-md">
+                <div class="col-6 text-center col-md">
                     <label for="phases">Počet fází</label>
-                    <select id="phases" name="phases" class="form-select">
+                    <select id="phases" name="phases" class="form-select text-center-select-input">
                         <option value="">Vyberte</option>
                         <option value="1">1</option>
                         <option value="3">3</option>

@@ -44,3 +44,16 @@ body {
 .responsive-table td {
     background-color: rgb(77,176,184); 
 }
+.text-to-end-selct-input {
+    text-align: right;
+    direction: rtl;
+    text-align-last: right;
+}
+.text-center-select-input {
+    text-align: center;
+    direction:ltr;
+    text-align-last: center;
+}
+.text-center-input {
+    text-align: center;
+}

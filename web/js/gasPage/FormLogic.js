@@ -17,6 +17,8 @@ function getFormData() {
     const monthlyDist = parseFloat(formValue('form', 'monthlyDist'));
 
 // Calculation of Results
+    // Creat uuid for result
+    uuid = crypto.randomUUID();
     // Usage Cost
     let usageCost = (mwhUsage * (priceGas + priceDist)).toFixed(2);
     // Distribution Cost
@@ -30,8 +32,7 @@ function getFormData() {
     totalCost = ((mwhUsage * (priceGas + priceDist)) + (numberOfMonths * distCost)).toFixed(2);
     // Monthly advance
     advancePay = (totalCost / numberOfMonths).toFixed(2);
-    // Creat uuid for result
-    uuid = crypto.randomUUID();
+    
 
 // Store values in local storage as Array
     // get existing array form storage

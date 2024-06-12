@@ -1,4 +1,4 @@
-// Logic for Gas Form
+// Logic for Electric Form
 
 // Initate Array
 let eResults = [];

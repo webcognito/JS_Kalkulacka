@@ -110,12 +110,12 @@
                 <h4>Spotřeba v MWh</h4>
                 <div class="form-floating col">
                     <input type="number" step=any class="form-control text-end" id="usage1" name="usageVT" value="0" placeholder="MWh">
-                    <label for="usageVT">Vysoký tarif</label>
+                    <label for="usageVT">Vysoký tarif (VT)</label>
                 </div>
             <!-- Usage NT -->
                 <div class="form-floating col mb-3">
                     <input type="number" step=any class="form-control text-end" id="usage2" name="usageNT" value="0" placeholder="MWh">
-                    <label for="usageNT">Nízký tarif</label>
+                    <label for="usageNT">Nízký tarif (NT)</label>
                 </div>  
             <!-- Number of Months -->
                 <div class="form-floating col">
@@ -155,19 +155,19 @@
                     <hr class="opacity-75 border-primary border-top border-3">
                 </div>
             <!-- Monthly Payments -->
-                <h4>Měsíční platby s DPH [Kč]</h4>
+                <h4>Měsíční platby</h4>
                 <div class="form-label text-center col">
-                    <label class="" for="constPay">Dodávku / Odběrně Místo</label>
+                    <label class="" for="constPay">Za Odběrně Místo<p><small>[Kč]</small></p></label>
                     
                     <input type="number" step=0.01 class="form-control text-center" id="constPay" name="constPay" value="0.00"> 
                 </div>
                 <div class="form-label text-center col">
-                    <label for="priceInputBreaker">Příkon hlavního Jističe</label>
+                    <label for="priceInputBreaker">Za Příkon Hlavní Jističe<p><small>[Kč]</small></p></label>
                     
                     <input type="number" step=0.01 class="form-control text-center" id="priceInputBreaker" name="priceInputBreaker" value="0.00" placeholder="Kč">
                 </div>
                 <div class="form-label text-center col">
-                    <label for="OTE">Činnost Operátora Trhu</label>
+                    <label for="OTE">Za Činnost Operátora Trhu<p><small>[Kč]</small></p></label>
                     <input type="number" step=0.01 class="form-control text-center" id="OTE" name="OTE" value="0.00">
                 </div>
                 <div class="container">
@@ -176,7 +176,7 @@
             <!-- POZE -->
                 <h4>Podporovaných zdrojů energie (POZE)</h4>
                 <div class="form-lable text-center col-6 col-md">
-                    <label for="byConsumption">Podle spotřeby</label>
+                    <label for="byConsumption">Podle spotřeby></label>
                     <p><small>[Kč/MWh]</small></p>
                     <input type="number" step=0.01 class="form-control text-center mt-n1" id="byConsumption" name="byConsumption" value="0.00">                
                 </div>
@@ -186,7 +186,7 @@
                     <input type="number" step=0.01 class="form-control text-center mt-n1" id="byBreaker" name="byBreaker" value="0.00">
                 </div>
                 <div class="form-label text-center col-6 col-md">
-                    <label for="mainBreaker">Velikost Hlavního Jističe</label>
+                    <label for="mainBreaker">Hlavního jističe</label>
                     <p class="invisible-text-form">_</p>
                     <select class="form-select form-control text-center-select-input mt-n1" id="mainBreaker" name="mainBreaker" style="text-align: end;">
                         <option value="0">(A)</option>
@@ -202,7 +202,7 @@
                     </select>
                 </div>
                 <div class="col-6 text-center col-md">
-                    <label for="phases">Počet Fází</label>
+                    <label for="phases">Počet fází</label>
                     <p class="invisible-text-form">_</p>
                     <select id="phases" name="phases" class="form-select text-center-select-input mt-n1">
                         <option value="">Vyberte</option>

@@ -8,8 +8,8 @@ function getFormData() {
     const company = formValue('form', 'company');
     const contractDuration = formValue("form", 'contractDuration');
     const distCode = formValue("form", 'distCode');
-    const usageVT = parseFloat(formValue("form", 'usage1'));
-    const usageNT = parseFloat(formValue("form", 'usage2'));
+    const usageVT = parseFloat(formValue("form", 'usageVT'));
+    const usageNT = parseFloat(formValue("form", 'usageNT'));
     const numberOfMonths = parseFloat(formValue('form', 'numberOfMonths'));
     const priceVT = parseFloat(formValue('form', 'priceVT'));
     const priceNT = parseFloat(formValue('form', 'priceNT'));
@@ -261,6 +261,11 @@ function Result(result) {
     return html;
 };
 
+// Iinput field onclick delete default value
+document.addEventListener('DOMContentLoaded', (event) => {
+    const eIds = ['usageVT', 'usageNT', 'priceVT', 'priceNT', 'constPay', 'priceInputBreaker', 'OTE', 'byConsumption', 'byBreaker'];
+    changeInputDefaultValue(eIds);
+});
 
 
 
@@ -308,30 +313,3 @@ function newButtonsAfterQuickResult() {
                 '</div>';
 return html;
 };
-
-// Iinput field onclick delete default value
-document.addEventListener('DOMContentLoaded', (event) => {
-    const inputField1 = getId('priceVT');
-    const inputField2 = getId('priceNT');
-
-    inputField1.addEventListener('focus', () => {
-        if (inputField1.value === '0') {
-            inputField1.value = '';
-        }
-    });
-    inputField1.addEventListener('blur', () => {
-        if (inputField1.value === '') {
-            inputField1.value = '0';
-        }
-    });
-    inputField2.addEventListener('focus', () => {
-        if (inputField2.value === '0') {
-            inputField2.value = '';
-        }
-    });
-    inputField2.addEventListener('blur', () => {
-        if (inputField2.value === '') {
-            inputField2.value = '0';
-        }
-    });
-});

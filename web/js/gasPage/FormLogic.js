@@ -236,8 +236,11 @@ function Result(result) {
     return html;
 };
 
-
-
+// Iinput field onclick delete default value
+document.addEventListener('DOMContentLoaded', (event) => {
+    const gIds = ['usage1', 'usage2', 'priceGas', 'monthlyGas', 'priceDist', 'monthlyDist'];
+    changeInputDefaultValue(gIds);
+});
 
 function newCalcHTML() {
     const html ='<div id="submit" class="row">'+
@@ -295,32 +298,3 @@ function mWhtoM3 (){
     var m3 = Math.round(((mWh / 0.9968 / 0.0108987) + Number.EPSILON) * 10) / 10;
     getId('usage1').value = m3;
 };
-
-/*
-// Iinput field onclick delete default value
-document.addEventListener('DOMContentLoaded', (event) => {
-    const inputField1 = getId('usage');
-    const inputField2 = getId('m3Usage');
-
-    inputField1.addEventListener('focus', () => {
-        if (inputField1.value === '0') {
-            inputField1.value = '';
-        }
-    });
-    inputField1.addEventListener('blur', () => {
-        if (inputField1.value === '') {
-            inputField1.value = '0';
-        }
-    });
-    inputField2.addEventListener('focus', () => {
-        if (inputField2.value === '0') {
-            inputField2.value = '';
-        }
-    });
-    inputField2.addEventListener('blur', () => {
-        if (inputField2.value === '') {
-            inputField2.value = '0';
-        }
-    });
-});
-*/

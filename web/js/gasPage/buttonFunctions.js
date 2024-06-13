@@ -8,7 +8,7 @@ function newCalc(){
     getId('submit').style.display = "flex";
     getId('consent').checked = false;
     getId('btnSubmit').disabled = true;
-    ids = ['result', 'detail', 'table'];
+    const ids = ['result', 'detail', 'table'];
     displayHTML(ids, 'none');
 };
 

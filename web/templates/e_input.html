@@ -109,12 +109,12 @@
             <!-- Usage VT -->
                 <h4>Spotřeba v MWh</h4>
                 <div class="form-floating col">
-                    <input type="number" step=any class="form-control text-end" id="usage1" name="usageVT" value="0" placeholder="MWh">
+                    <input type="number" step=any class="form-control text-end" id="usageVT" name="usageVT" value="0" placeholder="MWh">
                     <label for="usageVT">Vysoký tarif</label>
                 </div>
             <!-- Usage NT -->
                 <div class="form-floating col mb-3">
-                    <input type="number" step=any class="form-control text-end" id="usage2" name="usageNT" value="0" placeholder="MWh">
+                    <input type="number" step=any class="form-control text-end" id="usageNT" name="usageNT" value="0" placeholder="MWh">
                     <label for="usageNT">Nízký tarif</label>
                 </div>  
             <!-- Number of Months -->
@@ -143,13 +143,12 @@
                     <sup class="text-center">(jednotky včetně daně z elektřiny a systémových služeb)</sup>
                 <div class="form-label text-center col">
                     <label for="priceVT">Vysoký tarif <small>[Kč/MWh]</small></label>
-                    <input type="number" step=0.01 class="form-control text-center-input" id="priceVT" name="priceVT" value="0.00">
+                    <input type="number" step=0.01 class="form-control text-center-input" id="priceVT" name="priceVT" value="0">
                 </div>
             <!-- Price NT -->
                 <div class="form-label text-center col mb-3">
                     <label for="priceNT">Nízký tarif <small>[Kč/MWh]</small></label>
-                    <input type="number" step=0.01 class="form-control text-center-input" id="priceNT" name="priceNT" value="0.00">
-                   
+                    <input type="number" step=0.01 class="form-control text-center-input" id="priceNT" name="priceNT" value="0">
                 </div>
                 <div class="container">
                     <hr class="opacity-75 border-primary border-top border-3">
@@ -158,17 +157,15 @@
                 <h4>Měsíční platby s DPH [Kč]</h4>
                 <div class="form-label text-center col">
                     <label class="" for="constPay">Dodávku / Odběrně Místo</label>
-                    
-                    <input type="number" step=0.01 class="form-control text-center" id="constPay" name="constPay" value="0.00"> 
+                    <input type="number" step=0.01 class="form-control text-center" id="constPay" name="constPay" value="0"> 
                 </div>
                 <div class="form-label text-center col">
                     <label for="priceInputBreaker">Příkon hlavního Jističe</label>
-                    
-                    <input type="number" step=0.01 class="form-control text-center" id="priceInputBreaker" name="priceInputBreaker" value="0.00" placeholder="Kč">
+                    <input type="number" step=0.01 class="form-control text-center" id="priceInputBreaker" name="priceInputBreaker" value="0">
                 </div>
                 <div class="form-label text-center col">
                     <label for="OTE">Činnost Operátora Trhu</label>
-                    <input type="number" step=0.01 class="form-control text-center" id="OTE" name="OTE" value="0.00">
+                    <input type="number" step=0.01 class="form-control text-center" id="OTE" name="OTE" value="0">
                 </div>
                 <div class="container">
                     <hr class="opacity-75 border-primary border-top border-3">
@@ -178,12 +175,12 @@
                 <div class="form-lable text-center col-6 col-md">
                     <label for="byConsumption">Podle spotřeby</label>
                     <p><small>[Kč/MWh]</small></p>
-                    <input type="number" step=0.01 class="form-control text-center mt-n1" id="byConsumption" name="byConsumption" value="0.00">                
+                    <input type="number" step=0.01 class="form-control text-center mt-n1" id="byConsumption" name="byConsumption" value="0">                
                 </div>
                 <div class="col-6 text-center col-md">
                     <label for="byBreaker">Podle jističe</label>
                     <p><small>[Kč]</small></p>
-                    <input type="number" step=0.01 class="form-control text-center mt-n1" id="byBreaker" name="byBreaker" value="0.00">
+                    <input type="number" step=0.01 class="form-control text-center mt-n1" id="byBreaker" name="byBreaker" value="0">
                 </div>
                 <div class="form-label text-center col-6 col-md">
                     <label for="mainBreaker">Velikost Hlavního Jističe</label>

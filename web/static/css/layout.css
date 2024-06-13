@@ -59,3 +59,6 @@ body {
 .text-center-input {
     text-align: center;
 }
+.mt-n1 {
+    margin-top: -15px !important;
+  }

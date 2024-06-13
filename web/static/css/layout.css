@@ -18,7 +18,9 @@ body {
 .footer-background {
     background-color: rgb(77,176,184);
 }
-
+.invisible-text-form {
+    color: rgb(255, 254, 114);
+}
 .footer-background2 {
     background-color: rgb(218,21,54);
 }

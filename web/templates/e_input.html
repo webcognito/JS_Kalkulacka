@@ -156,8 +156,8 @@
                 </div>
             <!-- Monthly Payments -->
                 <h4>Měsíční platby</h4>
-                <div class="form-label col">
-                    <label class="text-center" for="constPay">Cena za dodávku - Stálá Platba <small>[Kč]</small></label>
+                <div class="form-label text-center col">
+                    <label class="" for="constPay">Stálá Platba za Dodávku <small>[Kč]</small></label>
                     <input type="number" step=0.01 class="form-control text-center" id="constPay" name="constPay" value="0.00"> 
                 </div>
                 <div class="form-label text-center col">
@@ -185,8 +185,9 @@
                 </div>
                 <div class="form-label text-center col-6 col-md">
                     <label for="mainBreaker">Hlavna jističe</label>
-                    <p><small>[A]</small></p>
+                    <p class="invisible-text-form">_</p>
                     <select class="form-select form-control text-center-select-input mt-n1" id="mainBreaker" name="mainBreaker" style="text-align: end;">
+                        <option value="0">(A)</option>
                         <option value="10">10</option>
                         <option value="16">16</option>
                         <option value="20">20</option>

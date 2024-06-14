@@ -149,11 +149,11 @@ function Result(result) {
                     '<div class="row footer-background">'+
                         '<h4 class="text-primary text-center text-center mt-3 mb-3"><u>Celková Cena</u></h4>'+
                         '<div class="form-label text-center mb-3 col">'+
-                            '<label for="total">Za ' + result.numberOfMonths + ' měsícu (Kč)</label>'+
+                            '<label for="total">Za ' + result.numberOfMonths + ' měsícu</label>'+
                             '<input type="number" class="form-control text-center" id="total" name="total" value="' + result.totalCost + '" disabled>'+
                         '</div>'+
                         '<div class="form-label text-center mb-3 col">'+
-                            '<label for="totalMonth">Měsíčna Záloha (Kč)</label>'+
+                            '<label for="totalMonth">Měsíčna Záloha</label>'+
                             '<input type="number" class="form-control text-center" id="advance" name="totalMonth" value="' + result.advancePay + '" disabled>'+
                         '</div>'+
                     '</div>'+
@@ -175,21 +175,21 @@ function Result(result) {
                 '<div id="detail" class="container mt-4" style="display: none">'+
                     '<div class="row footer-background">'+
                         '<h4 class="text-primary text-center mt-3 mb-3"><u>Podrobnosti</u></h4>'+
-                        '<div class="form-label text-center mb-3 col-sm-6 col-lg">'+
-                            '<label for="CostUsage">Obchodní Cena (Kč)</label>'+
+                        '<div class="form-label text-center mb-3 col-6 col-lg">'+
+                            '<label for="CostUsage">Obchodní Cena</label>'+
                             '<input type="number" class="form-control text-center" id="CostUsage" name="CostUsage" value="'+result.companyCost+'" disabled>'+ 
                         '</div>'+
-                        '<div class="form-label text-center mb-3 col-sm-6 col-lg">'+
-                            '<label for="CostDist">Regulovaná Cena (Kč)</label>'+
+                        '<div class="form-label text-center mb-3 col-6 col-lg">'+
+                            '<label for="CostDist">Regulovaná Cena</label>'+
                             '<input type="number" class="form-control text-center" id="CostDist" name="CostDist" value="'+result.regulatoryCost+'" disabled>'+ 
                         '</div>'+
                         
-                        '<div class="form-label text-center mb-3 col-sm-6 col-lg">'+
-                            '<label for="CostUsage">Uživatelská Cena (Kč)</label>'+
+                        '<div class="form-label text-center mb-3 col-6 col-lg">'+
+                            '<label for="CostUsage">Uživatelská Cena</label>'+
                             '<input type="number" class="form-control text-center" id="CostUsage" name="CostUsage" value="'+result.usageCost+'" disabled>'+ 
                         '</div>'+
-                        '<div class="form-label text-center mb-3 col-sm-6 col-lg">'+
-                            '<label for="CostDist">Distribucní Cena (Kč)</label>'+
+                        '<div class="form-label text-center mb-3 col-6 col-lg">'+
+                            '<label for="CostDist">Distribucní Cena</label>'+
                             '<input type="number" class="form-control text-center" id="CostDist" name="CostDist" value="'+result.distCostXmonths+'" disabled>'+ 
                         '</div>'+
                     '</div>'+

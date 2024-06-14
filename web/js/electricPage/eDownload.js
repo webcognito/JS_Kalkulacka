@@ -66,10 +66,10 @@ function downloadDetailCalculation() {
                               {}
                             ],
                             [
-                              {text: 'Hlavní jističe', colSpan: 3, border: [true, false, true, false], style: 'firstRow'}, 
+                              {text: 'Hlavního Jističe', colSpan: 3, border: [true, false, true, false], style: 'firstRow'}, 
                               {},  
                               {},  
-                              {text: 'Počet fází', colSpan: 3, border: [true, false, true, false], style: 'firstRow'}, 
+                              {text: 'Počet Fází', colSpan: 3, border: [true, false, true, false], style: 'firstRow'}, 
                               {},
                               {}
                             ], 

@@ -173,11 +173,11 @@ function Result(result) {
                     '<div class="row footer-background">'+
                         '<h4 class="text-primary text-center text-center mt-3 mb-3"><u>Celková Cena</u></h4>'+
                         '<div class="form-label text-center mb-3 col">'+
-                            '<label for="total">Za ' + result.numberOfMonths + ' měsícu (Kč)</label>'+
+                            '<label for="total">Za ' + result.numberOfMonths + ' měsícu</label>'+
                             '<input type="number" class="form-control text-center" id="total" name="total" value="' + result.totalCost + '" disabled>'+
                         '</div>'+
                         '<div class="form-label text-center mb-3 col">'+
-                            '<label for="totalMonth">Měsíčna Záloha (Kč)</label>'+
+                            '<label for="totalMonth">Měsíčna Záloha</label>'+
                             '<input type="number" class="form-control text-center" id="advance" name="totalMonth" value="' + result.advancePay + '" disabled>'+
                         '</div>'+
                     '</div>'+
@@ -199,21 +199,21 @@ function Result(result) {
                 '<div id="detail" class="container mt-4" style="display: none">'+
                     '<div class="row footer-background">'+
                         '<h4 class="text-primary text-center mt-3 mb-3"><u>Podrobnosti</u></h4>'+
-                        '<div class="form-label text-center mb-3 col-sm-6 col-lg">'+
-                            '<label for="CostUsageVT">Cena za Vysoký Tarif (Kč)</label>'+
+                        '<div class="form-label text-center mb-3 col-6 col-lg">'+
+                            '<label for="CostUsageVT">Cena Vysoký Tarif</label>'+
                             '<input type="number" class="form-control text-center" id="CostUsageVT" name="CostUsageVT" value="'+result.costVT+'" disabled>'+ 
                         '</div>'+
-                        '<div class="form-label text-center mb-3 col-sm-6 col-lg">'+
-                            '<label for="CostUsageNT">Cena za Nizky Tarif (Kč)</label>'+
+                        '<div class="form-label text-center mb-3 col-6 col-lg">'+
+                            '<label for="CostUsageNT">Cena Nizky Tarif</label>'+
                             '<input type="number" class="form-control text-center" id="CostUsageNT" name="CostUsageNT" value="'+result.costNT+'" disabled>'+ 
                         '</div>'+
                         
-                        '<div class="form-label text-center mb-3 col-sm-6 col-lg">'+
-                            '<label for="monthlyPay">Měsíční platba (Kč)</label>'+
+                        '<div class="form-label text-center mb-3 col-6 col-lg">'+
+                            '<label for="monthlyPay">Měsíční platba</label>'+
                             '<input type="number" class="form-control text-center" id="monthlyPay" name="monthlyPay" value="'+result.costMonth+'" disabled>'+ 
                         '</div>'+
-                        '<div class="form-label text-center mb-3 col-sm-6 col-lg">'+
-                            '<label for="POZE">Poze (Kč)</label>'+
+                        '<div class="form-label text-center mb-3 col-6 col-lg">'+
+                            '<label for="POZE">Poze</label>'+
                             '<input type="number" class="form-control text-center" id="POZE" name="POZE" value="'+result.poze+'" disabled>'+ 
                         '</div>'+
                     '</div>'+

@@ -22,7 +22,13 @@ function showDetail() {
 // Button display Comparison Table / id="btnComp" & id="btnCompDetail"
 function showTable() {
     getId('table').style.display = "block";
-    const ids = ['btnCompDetail', 'btnNewCalc1', 'btnComp', 'btnNewCalc2'];
+    const ids = ['btnComp', 'btnCompDetail', 'btnNewCalc1', 'btnComp', 'btnNewCalc2'];
+    displayHTML(ids, 'none');
+    scrollTo('table');
+};
+function showTableQuick() {
+    getId('table').style.display = "block";
+    const ids = ['btnComp', 'btnNewCalc1'];
     displayHTML(ids, 'none');
     scrollTo('table');
 };
@@ -30,6 +36,17 @@ function showTable() {
 // Button delete all Results and start new / id="btnClearTable"
 function clearGTable(gResults) {
     localStorage.clear(gResults);
+
+     // Scroll to element
+     scrollTo('form'); 
+     getId('submit').style.display = "flex";
+     getId('consent').checked = false;
+     getId('btnSubmit').disabled = true;
+     ids = ['result', 'detail', 'table'];
+     displayHTML(ids, 'none');
+};
+function clearGTableQuick(gResultsQuick) {
+    localStorage.clear(gResultsQuick);
 
      // Scroll to element
      scrollTo('form'); 

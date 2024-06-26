@@ -8,7 +8,7 @@
 // Downloading detailed calculation / id="btnDownloadDetail" 2x
 function downloadDetailCalculation() {
 // Retrieve Array from localStorage
-    const storedArray = localStorage.getItem('gResults');
+    const storedArray = localStorage.getItem('gResultsQuick');
 // Parse JSON string back to Array
     const parsedArray = JSON.parse(storedArray);
 // Find item with newest uuid from FormLogic
@@ -21,7 +21,7 @@ function downloadDetailCalculation() {
         watermark: {text: "WebCognito.com", color: '#0e6dfc', opacity: 0.05},
       
         content: [
-            {text: 'Plyn - Vaše Údaje a Cena', margin: [0, 0, 0, 10], style: 'title'},
+            {text: 'Plyn - Vaše Údaje a Obchodní Cena', margin: [0, 0, 0, 10], style: 'title'},
             {   
                 style: 'table',
                 table:{
@@ -62,35 +62,19 @@ function downloadDetailCalculation() {
                                 {}
                             ],
                             [
-                                {text: 'Obchodní Cena', colSpan: 3, border: [true, true, false, false], style: 'firstRow'}, 
+                                {text: 'Cena za Dodávku', colSpan: 3, border: [true, true, false, false], style: 'firstRow'}, 
                                 {},
                                 {}, 
-                                {text: 'Regulovaná Cena', colSpan: 3, border: [true, true, true, false], style: 'firstRow'},  
+                                {text: 'Stálá Platba', colSpan: 3, border: [true, true, true, false], style: 'firstRow'},  
                                 {},  
                                 {}
                             ],
                             [
-                                {text: foundResult.companyCost + ' Kč', colSpan: 3, border: [true, false, true, true], alignment: 'center'}, 
+                                {text: foundResult.usageCost + ' Kč', colSpan: 3, border: [true, false, true, true], alignment: 'center'}, 
                                 {},
                                 {}, 
-                                {text: foundResult.regulatoryCost + ' Kč', colSpan: 3, border: [true, false, true, true], alignment: 'center'}, 
+                                {text: foundResult.distCostXmonths + ' Kč', colSpan: 3, border: [true, false, true, true], alignment: 'center'}, 
                                 {}, 
-                                {}
-                            ],
-                            [
-                                {text: 'Uživatelská Cena', colSpan: 2, border: [true, true, true, false], style: 'firstRow'}, 
-                                {}, 
-                                {text: 'Distribucní Cena', colSpan: 4, border: [true, true, true, false], style: 'firstRow'},  
-                                {}, 
-                                {},  
-                                {}
-                            ],
-                            [
-                                {text: foundResult.usageCost + ' Kč', colSpan: 2, border: [true, false, true, true], alignment: 'center'}, 
-                                {}, 
-                                {text: foundResult.distCostXmonths + ' Kč za ' + foundResult.numberOfMonths + ' měsícu', colSpan: 2, border: [true, false, true, true], alignment: 'center'}, 
-                                {}, 
-                                {text: foundResult.distCost + ' Kč za měsíc', colSpan: 2, border: [true, false, true, true], alignment: 'center'}, 
                                 {}
                             ],
                             [
@@ -102,15 +86,15 @@ function downloadDetailCalculation() {
                                 {}
                             ], 
                             [
-                                {text: 'Měsíčna Záloha', colSpan: 3, border: [true, false, true , false], style: 'firstRow'}, 
+                                {text: '', colSpan: 3, border: [true, false, true , false], style: 'firstRow'}, 
                                 {},
                                 {}, 
-                                {text: 'Celková Cena za ' + foundResult.numberOfMonths + ' měsícu', colSpan: 3, fillColor: '#ff9999', border: [true, false, true, false], style: 'firstRow'}, 
+                                {text: 'Obchodní Cena za ' + foundResult.numberOfMonths + ' měsícu', colSpan: 3, fillColor: '#ff9999', border: [true, false, true, false], style: 'firstRow'}, 
                                 {}, 
                                 {}
                             ],
                             [
-                                {text: foundResult.advancePay + ' Kč', colSpan: 3, border: [true, false, true, false], alignment: 'center'}, 
+                                {text: '', colSpan: 3, border: [true, false, true, false], alignment: 'center'}, 
                                 {}, 
                                 {}, 
                                 {text: foundResult.totalCost + ' Kč', colSpan: 3, fillColor: '#ff9999', fontSize: 15, bold: true, border: [true, false, true, false], decoration: 'underline', decorationStyle: 'double', alignment: 'center'}, 
@@ -162,14 +146,13 @@ function downloadDetailCalculation() {
 function downloadComparision() {
   // get data from local storage 
   // Format: [{company: "PRE", contract: "1 year", mwhUsage: "3", numberOfMonths: "12", totalCost: "2400", advancePay: "200"}]
-
     // Retrieve Array from localStorage
-    const storedArray = localStorage.getItem('gResults');
+    const storedArray = localStorage.getItem('gResultsQuick');
     // Parse JSON string back to Array
-    const gResults = JSON.parse(storedArray);
+    const gResultsQuick = JSON.parse(storedArray);
   
   // Columns display order
-    let columns = ['company', 'contractDuration', 'mwhUsage', 'numberOfMonths', 'totalCost', 'advancePay'];
+    let columns = ['company', 'contractDuration', 'mwhUsage', 'numberOfMonths', 'totalCost'];
 
     tableLayouts = {
         compTable:{
@@ -196,12 +179,12 @@ function downloadComparision() {
                 table: {
                     margin: [0, 20, 0, 0], // left , top, right, bottom
                     headerRows: 1,
-                    widths: ['20%', '16%', '15%', '10%', '*', '19%'],
+                    widths: ['20%', '20%', '20%', '10%', '*'],
                   //Function to build table
                     body: 
                         buildTableBody(
                         // External Data
-                            gResults,
+                            gResultsQuick,
                         // Columns display order
                             columns,
                         // Show headers?
@@ -212,8 +195,7 @@ function downloadComparision() {
                                 {text: 'Smlouva', fontSize: 12, color: 'white', alignment: 'center', alignmentChild: 'center'},
                                 {text: 'Spotřeba (MWh)', fontSize: 12, color: 'white', alignment: 'center', alignmentChild: 'center'},
                                 {text: 'Měsícu', fontSize: 12, color: 'white', alignment: 'center', alignmentChild: 'center'},
-                                {text: 'Celková Cena (Kč)', fontSize: 12, color: 'white', alignment: 'center', alignmentChild: 'center'},
-                                {text: 'Měsíčna Záloha (Kč)', fontSize: 12, color: 'white', alignment: 'center', alignmentChild: 'center'}
+                                {text: 'Obchodní Cena (Kč)', fontSize: 12, color: 'white', alignment: 'center', alignmentChild: 'center'},
                             ]
                         )
                 },
@@ -475,7 +457,7 @@ function pdfNameCalc() {
   const month = dateObj.getUTCMonth() + 1; //months from 1-12
   const day = dateObj.getUTCDate();
   const year = dateObj.getUTCFullYear();
-  downloadName = year + "_" + month + "_" + day + "_Plyn_Vypocet.pdf";
+  downloadName = year + "_" + month + "_" + day + "_Plyn_Obchodní_Cena.pdf";
   return downloadName
 }
 function pdfNameComp() {
@@ -483,7 +465,7 @@ function pdfNameComp() {
     const month = dateObj.getUTCMonth() + 1; //months from 1-12
     const day = dateObj.getUTCDate();
     const year = dateObj.getUTCFullYear();
-    downloadName = year + "_" + month + "_" + day + "_Plyn_Srovnani.pdf";
+    downloadName = year + "_" + month + "_" + day + "_Plyn_Srovnani_Obchodních_Cen.pdf";
     return downloadName
   }
   function pdfNameCalcComp() {

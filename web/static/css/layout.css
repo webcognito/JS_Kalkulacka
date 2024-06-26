@@ -1,26 +1,13 @@
 
-.nav-link {
-    color: rgb(255, 254, 114);
-}
-
-.nav-link:hover {
-    color: rgb(32, 68, 223);
-}
-
 body {
     background-color: black;
 }
 
-.form-bg-color {
-    background-color: rgb(255, 254, 114);
-}
-
+/* Footer */
 .footer-background {
     background-color: rgb(77,176,184);
 }
-.invisible-text-form {
-    color: rgb(255, 254, 114);
-}
+
 .footer-background2 {
     background-color: rgb(218,21,54);
 }
@@ -30,6 +17,7 @@ body {
     padding-top: 5px;
 }
 
+/* Comparison Table */
 .responsive-table {
     width: 100%;
     border-collapse: collapse;
@@ -46,6 +34,12 @@ body {
 .responsive-table td {
     background-color: rgb(77,176,184); 
 }
+
+/* Input Form */
+.form-bg-color {
+    background-color: rgb(255, 254, 114);
+}
+
 .text-to-end-selct-input {
     text-align: right;
     direction: rtl;
@@ -61,4 +55,55 @@ body {
 }
 .mt-n1 {
     margin-top: -15px !important;
-  }
+}
+
+/* Navigation */
+.nav-link {
+    color: rgb(255, 254, 114);
+}
+
+.nav-link:hover {
+    color: rgb(32, 68, 223);
+}
+
+.dropdown-menu {
+    background-color: rgb(33, 37, 41);
+    margin-top: -10px;
+    border: none;
+}
+
+.dropdown-item {
+    color: rgb(255, 254, 114);
+    margin-top: -5px;
+}
+
+.dropdown-item:hover {
+    color: rgb(32, 68, 223);
+    background-color: rgb(33, 37, 41);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(255, 254, 114)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+  
+.navbar-toggler {
+    border: 1px solid rgb(255, 254, 114);
+}
+
+.dropdown-toggle {
+    background-color: rgb(33, 37, 41);
+    border: none;
+    
+}
+.dropdown-toggle.show {
+    color: rgb(32, 68, 223) !important; 
+}
+
+.nav-link.active {
+    color:  rgb(77, 176, 184) !important;
+}
+
+.dropdown-item.active {
+    color:  rgb(77, 176, 184);
+    background-color: rgb(33, 37, 41);
+}

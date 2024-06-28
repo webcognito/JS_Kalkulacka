@@ -107,3 +107,19 @@ body {
     color:  rgb(77, 176, 184);
     background-color: rgb(33, 37, 41);
 }
+
+@media (min-width: 690px) {
+    .navbar-brand {
+        margin-left: 70px;
+    }
+}
+@media (min-width: 768px) {
+    .navbar-brand {
+        margin-left: 100px;
+    }
+}
+@media (min-width: 992px) {
+    .navbar-brand {
+        margin-left: 150px;
+    }
+}

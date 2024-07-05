@@ -26,10 +26,17 @@ function showTable() {
     displayHTML(ids, 'none');
     scrollTo('table');
 };
+function showTableQuick() {
+    getId('table').style.display = "block";
+    const ids = ['btnComp', 'btnNewCalc1'];
+    displayHTML(ids, 'none');
+    scrollTo('table');
+};
 
+/*
 // Button delete all Results and start new / id="btnClearTable"
-function clearGTable(gResults) {
-    localStorage.clear(gResults);
+function clearTable(array) {
+    localStorage.clear(array);
 
      // Scroll to element
      scrollTo('form'); 
@@ -39,3 +46,4 @@ function clearGTable(gResults) {
      ids = ['result', 'detail', 'table'];
      displayHTML(ids, 'none');
 };
+*/

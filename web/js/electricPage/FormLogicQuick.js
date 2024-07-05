@@ -1,68 +1,75 @@
-// Logic for Gas Form
+// Logic for Electric Form
 
 // Initate Array
-let gResultsQuick = [];
+let eResultsQuick = [];
 let uuid;
 function getFormData() {
 // Extract user input
     const company = formValue('form', 'company');
     const contractDuration = formValue("form", 'contractDuration');
-    const usageRange = formValue("form", 'usageRange');
-    const m3Usage = parseFloat(formValue("form", 'm3Usage'));
-    const mwhUsage = parseFloat(formValue("form", 'usage2'));
+    const distCode = formValue("form", 'distCode');
+    const usageVT = parseFloat(formValue("form", 'usageVT'));
+    const usageNT = parseFloat(formValue("form", 'usageNT'));
     const numberOfMonths = parseFloat(formValue('form', 'numberOfMonths'));
-    const priceGas = parseFloat(formValue('form', 'priceGas'));
-    const monthlyGas = parseFloat(formValue('form', 'monthlyGas'));
-
+    const priceVT = parseFloat(formValue('form', 'priceVT'));
+    const priceNT = parseFloat(formValue('form', 'priceNT'));
+    const constPay = parseFloat(formValue('form', 'constPay'));
+    
 // Calculation of Results
     // Creat uuid for result
     uuid = crypto.randomUUID();
     // Usage Cost
-    let usageCost = (mwhUsage * priceGas).toFixed(2);
-    // Distribution Cost
-    let distCostXmonths = (numberOfMonths * monthlyGas).toFixed(2);
+    let calCostVT = usageVT * priceVT;
+    let calCostNT = usageNT * priceNT;
+    let costVT = calCostVT.toFixed(2);
+    let costNT = calCostNT.toFixed(2);
+    // Monthly payments
+    let calMonth = constPay * numberOfMonths;
+    let costMonth = calMonth.toFixed(2);
+
     // Total Cost
-    totalCost = ((mwhUsage * priceGas) + (numberOfMonths * monthlyGas)).toFixed(2);
+    totalCost = (calCostVT + calCostNT + calMonth).toFixed(2);
 
 // Store values in local storage as Array
     // get existing array form storage
-    gResultsQuick = getFromLocalStorage();
+    eResultsQuick = getFromLocalStorage();
     // create new object
     const result = {
         uuid: uuid,
         company: company,
         contractDuration: contractDuration,
-        usageRange: usageRange,
-        m3Usage: m3Usage,
-        mwhUsage: mwhUsage,
-        numberOfMonths: numberOfMonths, 
-        usageCost: usageCost,
-        distCostXmonths: distCostXmonths,
+        distCode: distCode,
+        usageVT: usageVT,
+        usageNT: usageNT,
+        numberOfMonths: numberOfMonths,
+        costVT: costVT,
+        costNT: costNT,
+        costMonth: costMonth,
         totalCost: totalCost,
     };
     // check if result object should be added to array
     addToArray(result);
     // add updated results array to local storage
-    addToLocalStorage(gResultsQuick);
+    addToLocalStorage(eResultsQuick);
 
 // Creat result HTML
     getId('submit').style.display = "none"
     const resultDiv = Result(result);
     getId('result').outerHTML = resultDiv;
     scrollTo('result');
-    gResultsQuick = getFromLocalStorage();
-    renderGRows(gResultsQuick);
+    eResultsQuick = getFromLocalStorage();
+    renderERows(eResultsQuick);
 };
 
 // Get array from local storage
 function getFromLocalStorage() {
-    const reference = localStorage.getItem('gResultsQuick');
+    const reference = localStorage.getItem('eResultsQuick');
     if (reference) {
-        gResultsQuick = JSON.parse(reference);
+        eResultsQuick = JSON.parse(reference);
     } else {
-        gResultsQuick = [];
+        eResultsQuick = [];
     }
-    return gResultsQuick
+    return eResultsQuick
 };
 
 // Add result to array only if uuid doesn't exist
@@ -72,24 +79,24 @@ function addToArray(result) {
         return false;
     }
     // Otherwise add result object to array
-    gResultsQuick.push(result);
+    eResultsQuick.push(result);
     return true;
 };
 
 // Checks if uuid allready present in array and returns true/false
 function checkUuid(uuid) {
-    return gResultsQuick.some(function (gfg) {
+    return eResultsQuick.some(function (gfg) {
         return gfg.uuid === uuid;
     });
 };
 
 // Add updated array to local storage
-function addToLocalStorage(gResultsQuick) {
-    localStorage.setItem('gResultsQuick', JSON.stringify(gResultsQuick));
+function addToLocalStorage(eResultsQuick) {
+    localStorage.setItem('eResultsQuick', JSON.stringify(eResultsQuick));
 };
 
 // Render table with the data from local storage
-function renderGRows(gResultsQuick) {
+function renderERows(eResultsQuick) {
     let table = document.getElementById('savedComp');
 
     // delet existing rows, exclude table head
@@ -98,9 +105,10 @@ function renderGRows(gResultsQuick) {
         table.deleteRow(i);
     }
     
-    // create new table rows with updated objects fro array
-    for (let row of gResultsQuick) {
+    // create new table rows with updated objects from array
+    for (let row of eResultsQuick) {
         let tr = document.createElement('tr');
+
         let td1 = document.createElement('td');
         td1.textContent = row.company;
         tr.appendChild(td1);
@@ -110,16 +118,24 @@ function renderGRows(gResultsQuick) {
         tr.appendChild(td2);
 
         let td3 = document.createElement('td');
-        td3.textContent = row.mwhUsage;
+        td3.textContent = row.distCode;
         tr.appendChild(td3);
 
         let td4 = document.createElement('td');
-        td4.textContent = row.numberOfMonths;
+        td4.textContent = row.usageVT;
         tr.appendChild(td4);
 
         let td5 = document.createElement('td');
-        td5.textContent = row.totalCost;
+        td5.textContent = row.usageNT;
         tr.appendChild(td5);
+
+        let td6 = document.createElement('td');
+        td6.textContent = row.numberOfMonths;
+        tr.appendChild(td6);
+
+        let td7 = document.createElement('td');
+        td7.textContent = row.totalCost;
+        tr.appendChild(td7);
 
         table.appendChild(tr);
     }
@@ -130,15 +146,19 @@ function Result(result) {
     const html ='<div id="result" style="display:block;" class="container mt-3 mb-3">'+
                     '<div class="row footer-background">'+
                         '<h4 class="text-primary text-center text-center mt-3 mb-3"><u>Obchodní Cena za ' + result.numberOfMonths + ' měsícu</u></h4>'+
-                        '<div class="form-label text-center mb-3 col">'+
-                            '<label for="totalUsage">Dodávku</label>'+
-                            '<input type="number" class="form-control text-center" id="advance" name="totalMonth" value="' + result.usageCost + '" disabled>'+
+                        '<div class="form-label text-center mb-3 col-6">'+
+                            '<label for="totalUsage">Vysoký Tarif</label>'+
+                            '<input type="number" class="form-control text-center" id="advance" name="totalMonth" value="' + result.costVT + '" disabled>'+
                         '</div>'+
-                        '<div class="form-label text-center mb-3 col">'+
+                        '<div class="form-label text-center mb-3 col-6">'+
+                            '<label for="totalUsage">Nízký Tarif</label>'+
+                            '<input type="number" class="form-control text-center" id="advance" name="totalMonth" value="' + result.costNT + '" disabled>'+
+                        '</div>'+
+                        '<div class="form-label text-center mb-3 col-6">'+
                             '<label for="totalDist">Stálá Platba</label>'+
-                            '<input type="number" class="form-control text-center" id="advance" name="totalMonth" value="' + result.distCostXmonths + '" disabled>'+
+                            '<input type="number" class="form-control text-center" id="advance" name="totalMonth" value="' + result.costMonth + '" disabled>'+
                         '</div>'+
-                        '<div class="form-label text-center mb-3 col">'+
+                        '<div class="form-label text-center mb-3 col-6">'+
                             '<label for="total"><strong>Celková</strong></label>'+
                             '<input type="number" class="form-control text-center fw-bold" id="total" name="total" value="' + result.totalCost + '" disabled>'+
                         '</div>'+
@@ -163,7 +183,9 @@ function Result(result) {
                             '<tr>'+
                                 '<th>Dodavatel</th>'+
                                 '<th>Smlouva</th>'+
-                                '<th>Spotřeba MWh</th>'+
+                                '<th>Dist. Sazba</th>'+
+                                '<th>Spotřeba VT MWh</th>'+
+                                '<th>Spotřeba NT MWh</th>'+
                                 '<th>Měsícu</th>'+
                                 '<th>Cena</th>'+
                             '</tr>'+
@@ -187,22 +209,10 @@ function Result(result) {
 
 // Iinput field onclick delete default value
 document.addEventListener('DOMContentLoaded', (event) => {
-    const gIds = ['usage1', 'usage2', 'priceGas', 'monthlyGas'];
-    changeInputDefaultValue(gIds);
+    const eIds = ['usageVT', 'usageNT', 'priceVT', 'priceNT', 'constPay'];
+    changeInputDefaultValue(eIds);
 });
 
-//Conversion m3 to MWh and vice versa
-function m3toMWh (){
-    var m3 = getId('usage1').value;
-    var mWh = Math.round(((m3 * 0.9968 * 0.0108987) + Number.EPSILON) * 1000) / 1000;
-    getId('usage2').value = mWh;
-};
-function mWhtoM3 (){
-    var mWh = getId('usage2').value;
-    var m3 = Math.round(((mWh / 0.9968 / 0.0108987) + Number.EPSILON) * 10) / 10;
-    getId('usage1').value = m3;
-};
-
 function clearStorage() {
-    clearTable("gResultsQuick");
+    clearTable("eResultsQuick");
 }

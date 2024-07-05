@@ -73,7 +73,7 @@ function getFormData() {
     const resultDiv = Result(result);
     getId('result').outerHTML = resultDiv;
     scrollTo('result');
-    gResults = getFromLocalStorage();
+    eResults = getFromLocalStorage();
     renderERows(eResults);
 };
 
@@ -250,7 +250,7 @@ function Result(result) {
                         '</div>'+
                         
                         '<div class="d-grid col">'+
-                            '<button id="btnClearTable" type="button" onclick="clearGTable()" class="btn btn-primary btn-block"><i class="fa-regular fa-trash-can"></i> Smazat a Začít Znova</button>'+
+                            '<button id="btnClearTable" type="button" onclick="clearStorage()" class="btn btn-primary btn-block"><i class="fa-regular fa-trash-can"></i> Smazat a Začít Znova</button>'+
                         '</div>'+
                         
                         '<div class="d-grid col">'+
@@ -267,49 +267,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     changeInputDefaultValue(eIds);
 });
 
-
-
-function newCalcHTML() {
-    const html ='<div id="submit" class="row">'+
-                    '<div class="col-sm-2"></div>'+
-                    '<div class="form-check col-sm-8">'+
-                        '<input class="form-check-input" type="checkbox" id="consent" required>'+
-                        '<label class="form-check-label" for="consent">'+
-                            'Rozumím, že vypočtené výsledky jsou pouze orientační a každý poskytovatel provádí vlastní výpočty.'+
-                        '</label>'+
-                    '</div>'+
-                    '<div class="col-sm-2"></div>'+
-                    '<div class="col-sm-2"></div>'+
-                    '<div class="mt-2 mb-5 d-grid col-sm-8">'+
-                        '<button id="btnSubmit" type="button" onclick="getFormData()" class="btn btn-primary btn-block">Vypočítat</button>'+
-                    '</div>'+
-                    '<div class="col-sm-2"></div>'+
-                '</div>';
-    return html;
-};
-
-function newButtonAfterDetail() {
-    const html ='<div id="buttonsDetail" class="row">'+
-                    '<div class="col-sm-4"></div>'+
-                    '<div class="mt-5 mb-1 d-grid col-sm-4">'+
-                        '<button id="btnNewCalc" type="button" onclick="newCalc()" class="btn btn-primary btn-block">Změnit Parametry</button>'+
-                    '</div>'+
-                    '<div class="col-sm-4"></div>'+
-                '</div>';
-return html;
-};
-
-function newButtonsAfterQuickResult() {
-    const html ='<div id="buttonsQuickResult" class="row">'+
-                    '<div class="col-sm-2"></div>'+
-                    '<div class="mt-5 mb-3 d-grid col-sm-3">'+
-                        '<button id="btnNewCalc" type="button" onclick="newCalc()" class="btn btn-primary btn-block">Změnit Parametry</button>'+
-                    '</div>'+
-                    '<div class="col-sm-2"></div>'+
-                    '<div class="mt-5 mb-3 d-grid col-sm-3">'+
-                        '<button id="btnDetail2" type="button" class="btn btn-primary btn-block">Podrobnosti</button>'+
-                    '</div>'+
-                    '<div class="col-sm-2"></div>'+
-                '</div>';
-return html;
-};
+function clearStorage() {
+    clearTable("eResults");
+}

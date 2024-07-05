@@ -164,8 +164,7 @@
                     <hr class="opacity-75 border-primary border-top border-3">
                 </div>
             <!-- Price VT -->
-                <h4 class="text-center">Celková Cena</h4>
-                    <sup class="text-center">(jednotky včetně daně z elektřiny a systémových služeb)</sup>
+                <h4 class="">Obchodní Ceny s DPH</h4>
                 <div class="form-label text-center col">
                     <label for="priceVT">Vysoký tarif <small>[Kč/MWh]</small></label>
                     <input type="number" step=0.01 class="form-control text-center-input" id="priceVT" name="priceVT" value="0">
@@ -175,62 +174,10 @@
                     <label for="priceNT">Nízký tarif <small>[Kč/MWh]</small></label>
                     <input type="number" step=0.01 class="form-control text-center-input" id="priceNT" name="priceNT" value="0">
                 </div>
-                <div class="container">
-                    <hr class="opacity-75 border-primary border-top border-3">
-                </div>
-            <!-- Monthly Payments -->
-                <h4>Měsíční platby s DPH [Kč]</h4>
+            <!-- Stala Platba -->
                 <div class="form-label text-center col">
-                    <label class="" for="constPay">Dodávku / Odběrně Místo</label>
+                    <label class="" for="constPay">Stálá Platba <small>[Kč/měsic]</small</label>
                     <input type="number" step=0.01 class="form-control text-center" id="constPay" name="constPay" value="0"> 
-                </div>
-                <div class="form-label text-center col">
-                    <label for="priceInputBreaker">Příkon hlavního Jističe</label>
-                    <input type="number" step=0.01 class="form-control text-center" id="priceInputBreaker" name="priceInputBreaker" value="0">
-                </div>
-                <div class="form-label text-center col">
-                    <label for="OTE">Činnost Operátora Trhu</label>
-                    <input type="number" step=0.01 class="form-control text-center" id="OTE" name="OTE" value="0">
-                </div>
-                <div class="container">
-                    <hr class="opacity-75 border-primary border-top border-3">
-                </div>
-            <!-- POZE -->
-                <h4>Podporovaných zdrojů energie (POZE)</h4>
-                <div class="form-lable text-center col-6 col-md">
-                    <label for="byConsumption">Podle spotřeby</label>
-                    <p><small>[Kč/MWh]</small></p>
-                    <input type="number" step=0.01 class="form-control text-center mt-n1" id="byConsumption" name="byConsumption" value="0">                
-                </div>
-                <div class="col-6 text-center col-md">
-                    <label for="byBreaker">Podle jističe</label>
-                    <p><small>[Kč]</small></p>
-                    <input type="number" step=0.01 class="form-control text-center mt-n1" id="byBreaker" name="byBreaker" value="0">
-                </div>
-                <div class="form-label text-center col-6 col-md">
-                    <label for="mainBreaker">Hlavního Jističe</label>
-                    <p class="invisible-text-form">_</p>
-                    <select class="form-select form-control text-center-select-input mt-n1" id="mainBreaker" name="mainBreaker" style="text-align: end;">
-                        <option value="0">(A)</option>
-                        <option value="10">10</option>
-                        <option value="16">16</option>
-                        <option value="20">20</option>
-                        <option value="25">25</option>
-                        <option value="32">32</option>
-                        <option value="40">40</option>
-                        <option value="50">50</option>
-                        <option value="63">63</option>
-                        <option value="100">100</option>
-                    </select>
-                </div>
-                <div class="col-6 text-center col-md">
-                    <label for="phases">Počet Fází</label>
-                    <p class="invisible-text-form">_</p>
-                    <select id="phases" name="phases" class="form-select text-center-select-input mt-n1">
-                        <option value="">Vyberte</option>
-                        <option value="1">1</option>
-                        <option value="3">3</option>
-                    </select>
                 </div>
                 <div class="container">
                     <hr class="opacity-75 border-primary border-top border-3">
@@ -268,7 +215,7 @@
     </footer>
 
 <!--<script type="module" src="../js/gasFormLogic.js"></script>-->
-    <script src="../js/electricPage/FormLogic.js"></script>
+    <script src="../js/electricPage/FormLogicQuick.js"></script>
     <script src="../js/shortFunctions.js"></script>
     <script src="../js/electricPage/buttonFunctions.js"></script>
     <script src="../js/electricPage/eDownload.js"></script>

@@ -54,10 +54,10 @@ function downloadDetailCalculation() {
                                 {}
                             ],
                             [
-                                {text: foundResult.m3Usage + ' m3', colSpan: 3, fillColor: '#fffe72', border: [true, false, true, true], alignment: 'center'}, 
+                                {text: foundResult.m3Usage + ' m3', colSpan: 3, bold: true, fillColor: '#fffe72', border: [true, false, true, true], alignment: 'center'}, 
                                 {}, 
                                 {}, 
-                                {text: foundResult.mwhUsage + ' MWh', colSpan: 3, fillColor: '#fffe72', border: [true, false, true, true], alignment: 'center'}, 
+                                {text: foundResult.mwhUsage + ' MWh', colSpan: 3, bold: true, fillColor: '#fffe72', border: [true, false, true, true], alignment: 'center'}, 
                                 {}, 
                                 {}
                             ],

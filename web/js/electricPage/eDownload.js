@@ -42,26 +42,26 @@ function downloadDetailCalculation() {
                               {}
                             ],
                             [
-                              {text: '', colSpan: 2, fillColor: '#0e6dfc', border: [true, false, false, false]}, 
+                              {text: '', colSpan: 2, fillColor: '#fffe72', border: [true, false, false, false]}, 
                               {},  
-                              {text: 'Spotřeba Elektřiny', colSpan: 2, color:'white', fillColor: '#0e6dfc', border: [false, false, false, false], style: 'firstRow'},  
+                              {text: 'Spotřeba Elektřiny', colSpan: 2, fillColor: '#fffe72', border: [false, false, false, false], style: 'firstRow'},  
                               {}, 
-                              {text: '', colSpan: 2, fillColor: '#0e6dfc', border: [false, false, true, false]},
+                              {text: '', colSpan: 2, fillColor: '#fffe72', border: [false, false, true, false]},
                               {}
                             ],
                             [
-                                {text: 'Vysoký Tarif', colSpan: 3, color:'white', fillColor: '#0e6dfc', border: [true, false, true, false], style: 'firstRow'}, 
+                                {text: 'Vysoký Tarif', colSpan: 3, fillColor: '#fffe72', border: [true, false, true, false], style: 'firstRow'}, 
                                 {}, 
                                 {}, 
-                                {text: 'Nizky Tarif', colSpan: 3, color:'white', fillColor: '#0e6dfc', border: [true, false, true, false], style: 'firstRow'}, 
+                                {text: 'Nizky Tarif', colSpan: 3, fillColor: '#fffe72', border: [true, false, true, false], style: 'firstRow'}, 
                                 {}, 
                                 {}
                               ],
                             [
-                              {text: foundResult.usageVT + ' MWh', colSpan: 3, bold: true, color:'white', fillColor: '#0e6dfc', border: [true, false, true, true], alignment: 'center'}, 
+                              {text: foundResult.usageVT + ' MWh', colSpan: 3, bold: true, fillColor: '#fffe72', border: [true, false, true, true], alignment: 'center'}, 
                               {}, 
                               {}, 
-                              {text: foundResult.usageNT + ' MWh', colSpan: 3, bold: true, color:'white', fillColor: '#0e6dfc', border: [true, false, true, true], alignment: 'center'}, 
+                              {text: foundResult.usageNT + ' MWh', colSpan: 3, bold: true, fillColor: '#fffe72', border: [true, false, true, true], alignment: 'center'}, 
                               {}, 
                               {}
                             ],
@@ -82,18 +82,18 @@ function downloadDetailCalculation() {
                               {}
                             ],
                             [
-                              {text: 'Cena za Vysoký Tarif', colSpan: 3, bold: true, color:'white', fillColor: '#0e6dfc', border: [true, true, true, false], style: 'firstRow'}, 
+                              {text: 'Cena za Vysoký Tarif', colSpan: 3, bold: true, border: [true, true, true, false], style: 'firstRow'}, 
                               {},
                               {},
-                              {text: 'Cena za Nizky Tarif', colSpan: 3, bold: true, color:'white', fillColor: '#0e6dfc', border: [true, true, true, false], style: 'firstRow'}, 
+                              {text: 'Cena za Nizky Tarif', colSpan: 3, bold: true, border: [true, true, true, false], style: 'firstRow'}, 
                               {},  
                               {}
                             ],
                             [
-                              {text: foundResult.costVT + ' Kč', colSpan: 3, color:'white', fillColor: '#0e6dfc', border: [true, false, true, true], alignment: 'center'}, 
+                              {text: foundResult.costVT + ' Kč', colSpan: 3, border: [true, false, true, true], alignment: 'center'}, 
                               {},
                               {},
-                              {text: foundResult.costNT + ' Kč', colSpan: 3, color:'white', fillColor: '#0e6dfc', border: [true, false, true, true], alignment: 'center'}, 
+                              {text: foundResult.costNT + ' Kč', colSpan: 3, border: [true, false, true, true], alignment: 'center'}, 
                               {}, 
                               {}
                             ],

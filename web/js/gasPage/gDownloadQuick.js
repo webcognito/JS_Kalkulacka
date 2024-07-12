@@ -46,26 +46,34 @@ function downloadDetailCalculation() {
                                 {}
                             ],
                             [
-                                {text: '', colSpan: 2, fillColor: '#fffe72', border: [true, false, false, false]}, 
+                                {text: 'Spotřeba Plynu', colSpan: 6, fillColor: '#fffe72', border: [true, false, true, false], style: 'firstRow'}, 
                                 {},  
-                                {text: 'Spotřeba Plynu', colSpan: 2, fillColor: '#fffe72', border: [false, false, false, false], style: 'firstRow'},  
+                                {},  
                                 {}, 
-                                {text: '', colSpan: 2, fillColor: '#fffe72', border: [false, false, true, false]},
+                                {},
                                 {}
                             ],
                             [
-                                {text: foundResult.m3Usage + ' m3', colSpan: 3, fillColor: '#fffe72', border: [true, false, true, true], alignment: 'center'}, 
+                                {text: foundResult.m3Usage + ' m3', colSpan: 3, bold: true, fillColor: '#fffe72', border: [true, false, true, true], alignment: 'center'}, 
                                 {}, 
                                 {}, 
-                                {text: foundResult.mwhUsage + ' MWh', colSpan: 3, fillColor: '#fffe72', border: [true, false, true, true], alignment: 'center'}, 
+                                {text: foundResult.mwhUsage + ' MWh', colSpan: 3, bold: true, fillColor: '#fffe72', border: [true, false, true, true], alignment: 'center'}, 
                                 {}, 
                                 {}
                             ],
                             [
-                                {text: 'Cena za Dodávku', colSpan: 3, border: [true, true, false, false], style: 'firstRow'}, 
+                                {text: 'Obchodní Cena za ' + foundResult.numberOfMonths + ' měsícu', colSpan: 6, border: [true, false, true, false], style: 'firstRow'}, 
+                                {},  
+                                {},  
+                                {}, 
+                                {},
+                                {}
+                              ],
+                            [
+                                {text: 'Za Dodávku', colSpan: 3, border: [true, false, false, false], style: 'firstRow'}, 
                                 {},
                                 {}, 
-                                {text: 'Stálá Platba', colSpan: 3, border: [true, true, true, false], style: 'firstRow'},  
+                                {text: 'Stálá Platba', colSpan: 3, border: [true, false, true, false], style: 'firstRow'},  
                                 {},  
                                 {}
                             ],
@@ -76,39 +84,23 @@ function downloadDetailCalculation() {
                                 {text: foundResult.distCostXmonths + ' Kč', colSpan: 3, border: [true, false, true, true], alignment: 'center'}, 
                                 {}, 
                                 {}
-                            ],
-                            [
-                                {text: '', colSpan: 3, border: [true, false, true, false]}, 
-                                {},  
-                                {},  
-                                {text: '', colSpan: 3, fillColor: '#ff9999', border: [true, false, true, false]}, 
-                                {},
-                                {}
                             ], 
                             [
                                 {text: '', colSpan: 3, border: [true, false, true , false], style: 'firstRow'}, 
                                 {},
                                 {}, 
-                                {text: 'Obchodní Cena za ' + foundResult.numberOfMonths + ' měsícu', colSpan: 3, fillColor: '#ff9999', border: [true, false, true, false], style: 'firstRow'}, 
+                                {text: 'Celková ', colSpan: 3, fillColor: '#ff9999', border: [true, false, true, false], style: 'firstRow'}, 
                                 {}, 
                                 {}
                             ],
                             [
-                                {text: '', colSpan: 3, border: [true, false, true, false], alignment: 'center'}, 
+                                {text: '', colSpan: 3, border: [true, false, true, true], alignment: 'center'}, 
                                 {}, 
                                 {}, 
-                                {text: foundResult.totalCost + ' Kč', colSpan: 3, fillColor: '#ff9999', fontSize: 15, bold: true, border: [true, false, true, false], decoration: 'underline', decorationStyle: 'double', alignment: 'center'}, 
+                                {text: foundResult.totalCost + ' Kč', colSpan: 3, fillColor: '#ff9999', fontSize: 15, bold: true, border: [true, false, true, true], decoration: 'underline', decorationStyle: 'double', alignment: 'center'}, 
                                 {}, 
                                 {}
-                            ],
-                            [
-                                {text: '', colSpan: 3, border: [true, false, true, true]}, 
-                                {},  
-                                {},  
-                                {text: '', colSpan: 3, fillColor: '#ff9999', border: [true, false, true, true], alignment: 'center'}, 
-                                {},
-                                {}
-                            ],      
+                            ],     
                     ]
                 },
           
